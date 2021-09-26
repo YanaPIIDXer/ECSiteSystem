@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button class="btn btn-danger">Test</button>
   </div>
 </template>
 
