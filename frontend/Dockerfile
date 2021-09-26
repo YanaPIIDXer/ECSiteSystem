@@ -1,6 +1,6 @@
 FROM node:14.15.0-alpine
 
-RUN npm install -g @angular/cli
+RUN npm install -g @vue/cli
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ RUN npm install
 ADD ./src /app
 
 EXPOSE 80
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80", "--poll", "1000"]
+CMD ["npm", "run", "serve"]
