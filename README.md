@@ -6,7 +6,7 @@ ECサイトシステム。AngularとSpringBootのポートフォリオ
 |Key|Value|Source|
 |---|---|---|
 |フロントエンド|Angular|[frontend/src/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/frontend/src)|
-|バックエンド|Java + SpringBoot|[backend/src/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/backend/src)|
+|バックエンド|Java + SpringBoot|[backend/ecsite/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/backend/ecsite)|
 
 ## 想定利用者
 
