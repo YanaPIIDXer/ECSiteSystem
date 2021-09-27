@@ -1,5 +1,8 @@
 <template>
     <div class="navbar-nav">
+        <span class="ml-5">
+            <span class="nav-item nav-link">{{ $store.getters.name }} 様</span>
+        </span>
         <span class="nav-item nav-link" @click="logout">ログアウト</span>
     </div>
 </template>
