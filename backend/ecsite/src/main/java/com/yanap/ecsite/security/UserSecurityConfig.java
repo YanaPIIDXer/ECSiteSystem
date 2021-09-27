@@ -1,5 +1,6 @@
 package com.yanap.ecsite.security;
 
+import com.yanap.ecsite.handler.UserLoginSuccessHandler;
 import com.yanap.ecsite.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -37,7 +37,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/user/login")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .successHandler(new SimpleUrlAuthenticationSuccessHandler())
+                    .successHandler(new UserLoginSuccessHandler())
                     .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                     .permitAll()
             .and()
