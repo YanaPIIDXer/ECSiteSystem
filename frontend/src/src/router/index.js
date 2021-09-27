@@ -3,6 +3,7 @@ import Top from '../views/Top';
 import LoginAdmin from '../views/LoginAdmin';
 import AdminTop from '../views/AdminTop';
 import UserRegister from '../views/UserRegister';
+import LoginUser from '../views/LoginUser';
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: "/register",
     name: "UserRegister",
     component: UserRegister
+  },
+  {
+    path: "/login",
+    name: "LoginUser",
+    component: LoginUser
   },
   {
     path: "/login_admin",
