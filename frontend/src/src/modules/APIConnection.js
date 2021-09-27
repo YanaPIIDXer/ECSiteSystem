@@ -1,38 +1,36 @@
 import conn from "./BasicConnection";
 
 // TODO:本番環境では接続先を変える
-const ENDPOINT = "http://localhost:3001/";
+const ENDPOINT = "http://localhost:3001";
 
 export async function get(api) {
     const url = ENDPOINT + api;
-    var json = null;
+    var res = {
+        status: 0,
+        json: null
+    };
     try {
         const result = await conn.get(url);
-        if (result.status != 200) {
-            alert("StatusCode:" + result.status);
-            return null;
-        }
-        json = JSON.parse(JSON.stringify(result.data));    
+        res.status = result.status;
+        res.json = JSON.parse(JSON.stringify(result.data));            
     } catch (e) {
-        alert(e);
-        return null;
+        console.log(e);
     }
-    return json;
+    return res;
 }
 
 export async function post(api, params) {
     const url = ENDPOINT + api;
-    var json = null;
+    var res = {
+        status: 0,
+        json: null
+    };
     try {
         const result = await conn.post(url, params);
-        if (result.status != 200) {
-            alert("StatusCode:" + result.status);
-            return null;
-        }
-        json = JSON.parse(JSON.stringify(result.data));            
+        res.status = result.status;
+        res.json = JSON.parse(JSON.stringify(result.data));            
     } catch (e) {
-        alert(e);
-        return null;
+        console.log(e);
     }
-    return json;
+    return res;
 }

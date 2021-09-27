@@ -21,7 +21,12 @@ export default {
             params.append("name", "admin");
             params.append("password", this.password);
             const res = await post("/admin/login", params);
-            console.log(res);
+            if (res.status != 200) {
+                alert("ログインに失敗しました");
+                return;
+            }
+            this.$store.commit("loginAsAdmin");
+            this.$router.push("/admin/top");
         }
     }
 }
