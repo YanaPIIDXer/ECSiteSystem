@@ -20,6 +20,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.mvcMatcher("/user/**")
                 .authorizeRequests()
+                    .mvcMatchers("/user/register").permitAll()
                     .anyRequest().hasRole("USER")
             .and()
                 .formLogin()

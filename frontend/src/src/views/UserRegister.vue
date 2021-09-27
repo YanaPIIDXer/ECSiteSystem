@@ -16,7 +16,7 @@
 
             <h2>連絡先情報</h2>
             <label class="form-label">住所</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="address" />
             <hr />
 
             <h2>クレジットカード情報</h2>
@@ -46,6 +46,7 @@
 <script>
 import { loadStripe } from '@stripe/stripe-js';
 import { STRIPE_PUBLIC_KEY } from '../modules/Constants';
+import { post } from '../modules/APIConnection';
 
 export default {
     name: "UserRegister",
@@ -55,6 +56,7 @@ export default {
             email: "",
             password: "",
             confirmPassword: "",
+            address: "",
             dummyCards: [
                 {name: "VISA1", number: "4111111111111111"},
                 {name: "VISA2", number: "4242424242424242"},
@@ -118,13 +120,24 @@ export default {
     },
     methods: {
         register: async function () {
+            if (this.password != this.confirmPassword) {
+                alert("確認用のパスワードが一致しません。");
+                return;
+            }
+            
             const {token, error} = await this.stripe.createToken(this.numberElem);
             if (error) {
                 alert(error.message);
                 return;
             }
-            var sendToken = token.id;
-            alert(sendToken);
+            var params = new URLSearchParams();
+            params.append("name", this.name);
+            params.append("email", this.email);
+            params.append("password", this.password);
+            params.append("address", this.address);
+            params.append("token", token.id);
+            const res = await post("/user/register", params);
+            console.log(res);
         }
     }
 }
