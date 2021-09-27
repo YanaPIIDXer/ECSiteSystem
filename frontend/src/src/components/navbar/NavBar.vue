@@ -17,7 +17,7 @@
                 </span>
                 <span v-else>
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#" @click="logout">ログアウト</a>
+                        <span class="nav-item nav-link" @click="logout">ログアウト</span>
                     </div>
                 </span>
             </div>
@@ -47,4 +47,7 @@ export default {
 </script>
 
 <style scoped>
+span .nav-link {
+    cursor: pointer;
+}
 </style>
