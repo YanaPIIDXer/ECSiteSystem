@@ -1,17 +1,8 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-3" v-for="item in list" :key="item.id">
-                    <div class="card">
-                        <img :src="item.imageUrl" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">{{ item.description }}</p>
-                            <button class="btn btn-primary">カートに入れる</button>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3" v-for="item in list" :key="item.id">
+                <product-card :name="item.name" :imageUrl="item.imageUrl" :description="item.description" />
             </div>
         </div>
     </div>
@@ -19,9 +10,13 @@
 
 <script>
 import { get } from '../modules/APIConnection';
+import ProductCard from '../components/ProductCard';
 
 export default {
     name: "Top",
+    components: {
+        ProductCard
+    },
     data: function () {
         return {
             list: [],
@@ -34,3 +29,5 @@ export default {
     }
 }
 </script>
+
+        ProductCard
