@@ -25,7 +25,8 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
+
+    // ユーザ新規登録
     @PostMapping("/register")
     public UserRegisterResponse register(@Validated UserRegisterRequest request, BindingResult result) {
         if (result.hasErrors()) {
