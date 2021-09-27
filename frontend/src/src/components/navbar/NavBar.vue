@@ -12,9 +12,7 @@
                     <nav-bar-not-login />
                 </span>
                 <span v-else>
-                    <div class="navbar-nav">
-                        <span class="nav-item nav-link" @click="logout">ログアウト</span>
-                    </div>
+                    <nav-bar-admin />
                 </span>
             </div>
         </div>
@@ -23,31 +21,17 @@
 
 <script>
 import { get } from '../../modules/APIConnection';
+import NavBarAdmin from './NavBarAdmin.vue';
 import NavBarNotLogin from './NavBarNotLogIn';
 
 export default {
     name: "NavBar",
     components: {
-        NavBarNotLogin
-    },
-    methods: {
-        logout: async function () {
-            if (!confirm("ログアウトしますか？")) { return; }
-            const api = this.$store.getters.isUser ? "/user/logout" : "/admin/logout";
-            const res = await get(api);
-            if (res.status != 200) {
-                alert("ログアウトに失敗しました");
-                return;
-            }
-            this.$store.commit("logout");
-            this.$router.push("/");
-        }
+        NavBarNotLogin,
+        NavBarAdmin
     }
 }
 </script>
 
 <style scoped>
-span .nav-link {
-    cursor: pointer;
-}
 </style>
