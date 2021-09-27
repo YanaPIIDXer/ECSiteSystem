@@ -15,21 +15,23 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/user")
 @SessionAttributes(types = Cart.class)
 public class CartController {
+    private static final String SESSION_NAME = "cart";
+    
     // カート用セッション生成
-    @ModelAttribute("cart")
+    @ModelAttribute(SESSION_NAME)
     public Cart setupCartSession() {
         return new Cart();
     }
 
     // カートを取得
     @RequestMapping("/cart")
-    public Cart get(@ModelAttribute("cart") Cart cart) {
+    public Cart get(@ModelAttribute(SESSION_NAME) Cart cart) {
         return cart;
     }
 
     // カートに追加
     @PostMapping("/cart/add")
-    public SimpleResultResponse add(@RequestParam("id") long id, @RequestParam("count") int count, @ModelAttribute("cart") Cart cart) {
+    public SimpleResultResponse add(@RequestParam("id") long id, @RequestParam("count") int count, @ModelAttribute(SESSION_NAME) Cart cart) {
         int current = 0;
         if (cart.containsKey(id)) {
             current = cart.get(id);
