@@ -2,12 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Top from '../views/Top';
 import LoginAdmin from '../views/LoginAdmin';
 import AdminTop from '../views/AdminTop';
+import UserRegister from '../views/UserRegister';
 
 const routes = [
   {
     path: '/',
     name: 'Top',
     component: Top
+  },
+  {
+    path: "/register",
+    name: "UserRegister",
+    component: UserRegister
   },
   {
     path: "/login_admin",
