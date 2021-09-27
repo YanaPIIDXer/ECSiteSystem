@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import conn from '../modules/BasicConnection';
+
 export default {
     name: "LoginAdmin",
     data: function () {
@@ -15,7 +17,11 @@ export default {
     },
     methods: {
         login: async function () {
-            alert("ログイン");
+            var params = new URLSearchParams();
+            params.append("name", "admin");
+            params.append("password", this.password);
+            const res = conn.post("/admin/login", params);
+            console.log(res);
         }
     }
 }
