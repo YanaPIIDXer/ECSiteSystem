@@ -12,7 +12,12 @@
                     <nav-bar-not-login />
                 </span>
                 <span v-else>
-                    <nav-bar-admin />
+                    <span v-if="$store.getters.isUser">
+                        <nav-bar-user />
+                    </span>
+                    <span v-else>
+                        <nav-bar-admin />
+                    </span>
                 </span>
             </div>
         </div>
@@ -23,12 +28,14 @@
 import { get } from '../../modules/APIConnection';
 import NavBarAdmin from './NavBarAdmin.vue';
 import NavBarNotLogin from './NavBarNotLogIn';
+import NavBarUser from './NavBarUser.vue';
 
 export default {
     name: "NavBar",
     components: {
         NavBarNotLogin,
-        NavBarAdmin
+        NavBarAdmin,
+        NavBarUser
     }
 }
 </script>
