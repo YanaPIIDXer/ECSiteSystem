@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { get } from '../../modules/APIConnection';
 import NavBarAdmin from './NavBarAdmin.vue';
 import NavBarNotLogin from './NavBarNotLogIn';
 import NavBarUser from './NavBarUser.vue';

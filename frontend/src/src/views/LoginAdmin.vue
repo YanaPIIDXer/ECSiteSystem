@@ -26,7 +26,7 @@ export default {
                 return;
             }
             this.$store.commit("loginAsAdmin");
-            this.$router.push("/admin/top");
+            this.$router.push("/admin");
         }
     }
 }

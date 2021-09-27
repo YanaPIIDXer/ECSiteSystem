@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { get } from '../../modules/APIConnection';
+
 export default {
     name: "NavBarAdmin",
     methods: {

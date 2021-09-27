@@ -15,7 +15,7 @@ const routes = [
     component: LoginAdmin
   },
   {
-    path: "/admin/top",
+    path: "/admin",
     name: "AdminTop",
     component: AdminTop
   },
