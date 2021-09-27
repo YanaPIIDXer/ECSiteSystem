@@ -7,6 +7,7 @@ ECサイトシステム。Vue3とSpringBootのポートフォリオ
 |---|---|---|
 |フロントエンド|Vue3|[frontend/src/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/frontend/src)|
 |バックエンド|Java + SpringBoot|[backend/ecsite/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/backend/ecsite)|
+|決済システム|Stripe|---|
 
 ## このシステムで実現する事
 
