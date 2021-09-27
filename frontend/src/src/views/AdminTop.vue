@@ -8,7 +8,7 @@
 export default {
     name: "AdminTop",
     mounted: function () {
-        if (!this.$store.getter.isAdmin) {
+        if (!this.$store.getters.isAdmin) {
             this.$router.push("/");
         }
     }
