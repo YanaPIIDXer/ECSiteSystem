@@ -6,7 +6,8 @@ export default createStore({
   },
   getters: {
     isLogin: (state) => (state.role != ""),
-    isAdmin: (state) => (state.role != "ADMIN"),
+    isUser: (state) => (state.role == "USER"),
+    isAdmin: (state) => (state.role == "ADMIN"),
   },
   mutations: {
     loginAsUser: (state) => (state.role = "USER"),
