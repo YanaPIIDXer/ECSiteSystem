@@ -15,6 +15,6 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.mvcMatcher("/admin/**")
                 .authorizeRequests()
-                    .anyRequest().authenticated();
+                    .anyRequest().hasRole("ADMIN");
     }
 }
