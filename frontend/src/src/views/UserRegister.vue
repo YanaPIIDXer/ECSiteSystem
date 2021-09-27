@@ -137,7 +137,16 @@ export default {
             params.append("address", this.address);
             params.append("token", token.id);
             const res = await post("/user/register", params);
-            console.log(res);
+            if (res.status != 200) {
+                alert("ユーザ登録に失敗しました");
+                return;
+            }
+            if (!res.json.result) {
+                alert(res.json.errorMessage);
+                return;
+            }
+            alert("登録に成功しました");
+            this.$router.push("/");
         }
     }
 }
