@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import conn from '../modules/BasicConnection';
+import { post } from '../modules/APIConnection';
 
 export default {
     name: "LoginAdmin",
@@ -20,8 +20,7 @@ export default {
             var params = new URLSearchParams();
             params.append("name", "admin");
             params.append("password", this.password);
-            // TODO:API化
-            const res = await conn.post("http://localhost:3001/admin/login", params);
+            const res = await post("/admin/login", params);
             console.log(res);
         }
     }

@@ -1,6 +1,7 @@
 import conn from "./BasicConnection";
 
-const ENDPOINT = "http://localhost:3000/";
+// TODO:本番環境では接続先を変える
+const ENDPOINT = "http://localhost:3001/";
 
 export async function get(api) {
     const url = ENDPOINT + api;
