@@ -41,7 +41,12 @@ export default {
                 alert("追加に失敗しました");
                 return;
             }
-            
+
+            if (!res.json.result) {
+                alert(res.json.errorMessage);
+                return;
+            }
+
             alert("追加しました");
             this.$router.push("/admin");
         }
