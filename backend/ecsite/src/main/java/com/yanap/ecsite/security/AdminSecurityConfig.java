@@ -1,5 +1,7 @@
 package com.yanap.ecsite.security;
 
+import com.yanap.ecsite.config.SecurityConfig;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -43,9 +45,6 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("password")).roles("ADMIN");
+                .withUser("admin").password(SecurityConfig.passwordEncoder().encode("password")).roles("ADMIN");
     }
-    
-    @Bean
-    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 }
