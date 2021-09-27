@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.response.UserLoginSuccessResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
