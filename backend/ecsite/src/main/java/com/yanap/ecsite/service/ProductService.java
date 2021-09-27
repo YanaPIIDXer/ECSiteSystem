@@ -1,5 +1,7 @@
 package com.yanap.ecsite.service;
 
+import java.util.List;
+
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.repository.ProductRepository;
 
@@ -18,5 +20,10 @@ public class ProductService {
             result = (repository.save(product) != null);
         } catch (Exception e) { return false; }
         return result;
+    }
+
+    // HACK:ページネーションを考える
+    public List<Product> getAll() {
+        return repository.findAll();
     }
 }

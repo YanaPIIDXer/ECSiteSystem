@@ -1,5 +1,7 @@
 package com.yanap.ecsite.controller;
 
+import java.util.List;
+
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.request.AddProductRequest;
 import com.yanap.ecsite.response.AddProductResponse;
@@ -12,15 +14,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// 管理者用コントローラ
+// 商品関係コントローラ
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
+public class ProductController {
     @Autowired
     private ProductService productService;
+
+    // 商品リスト取得
+    // HACK:ページネーションが考慮されていない
+    @RequestMapping("/product/list")
+    public List<Product> list() {
+        return productService.getAll();
+    }
     
     // 商品登録
-    @PostMapping("/product/add")
+    @PostMapping("/admin/product/add")
     public AddProductResponse addProduct(@Validated AddProductRequest request, BindingResult result) {
         if (result.hasErrors()) {
             return new AddProductResponse(false, result.getAllErrors().get(0).getDefaultMessage());
