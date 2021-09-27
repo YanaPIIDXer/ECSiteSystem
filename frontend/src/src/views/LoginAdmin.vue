@@ -20,7 +20,8 @@ export default {
             var params = new URLSearchParams();
             params.append("name", "admin");
             params.append("password", this.password);
-            const res = conn.post("/admin/login", params);
+            // TODO:API化
+            const res = await conn.post("http://localhost:3001/admin/login", params);
             console.log(res);
         }
     }
