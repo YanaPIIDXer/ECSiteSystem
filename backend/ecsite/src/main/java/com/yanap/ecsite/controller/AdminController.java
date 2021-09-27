@@ -1,7 +1,6 @@
 package com.yanap.ecsite.controller;
 
 import com.yanap.ecsite.entity.Product;
-import com.yanap.ecsite.repository.ProductRepository;
 import com.yanap.ecsite.request.AddProductRequest;
 import com.yanap.ecsite.response.AddProductResponse;
 import com.yanap.ecsite.service.ProductService;
