@@ -33,7 +33,7 @@ export default {
                 alert("ログインに失敗しました");
                 return;
             }
-            this.$store.commit("loginAsUser", "dummy");
+            this.$store.commit("loginAsUser", res.json.name);
             this.$router.push("/");
         }
     }
