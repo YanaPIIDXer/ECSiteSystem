@@ -1,8 +1,8 @@
 <template>
-    <form @submit="login">
+    <div>
         <label>パスワード</label><input type="password" v-model="password" /><br />
-        <input type="submit" value="ログイン" />
-    </form>
+        <button @click="login">ログイン</button>
+    </div>
 </template>
 
 <script>
