@@ -4,6 +4,7 @@ import LoginAdmin from '../views/LoginAdmin';
 import AdminTop from '../views/AdminTop';
 import UserRegister from '../views/UserRegister';
 import LoginUser from '../views/LoginUser';
+import AddProduct from '../views/AddProduct';
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/admin",
     name: "AdminTop",
     component: AdminTop
+  },
+  {
+    path: "/admin/add_product",
+    name: "AddProduct",
+    component: AddProduct
   },
 ]
 
