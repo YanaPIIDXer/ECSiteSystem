@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 // ユーザセキュリティ構成
 @Configuration
@@ -24,7 +25,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MappingJackson2HttpMessageConverter messageConverter;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,7 +41,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/user/login")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .successHandler(new UserLoginSuccessHandler())
+                    .successHandler(new UserLoginSuccessHandler(messageConverter))
                     .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                     .permitAll()
             .and()
