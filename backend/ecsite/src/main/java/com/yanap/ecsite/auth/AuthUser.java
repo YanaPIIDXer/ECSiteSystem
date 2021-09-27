@@ -10,9 +10,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Getter;
+
 // 認証ユーザ
 public class AuthUser implements UserDetails {
-
+    @Getter
     private User user;
 
     public AuthUser(User user) {
