@@ -11,13 +11,21 @@
                     <div class="col-5 mt-5">
                         <p>{{ item.name }}</p>
                         <p>単価：{{ item.price }}</p>
-                        <p>小計：{{ item.price * item.count }}</p>
+                        <p>小計価格：{{ item.price * item.count }}</p>
                     </div>
                     <div class="col-4 mt-5">
                         <label class="form-label">数量</label>
                         <input type="number" v-model="item.count" class="form-control" />
                         <button @click="update(item)">変更</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    合計価格：{{ totalPrice }}
                 </div>
             </div>
         </div>
@@ -32,11 +40,17 @@ export default {
     data: function () {
         return {
             list: [],
+            totalPrice: 0,
         };
     },
     mounted: async function () {
         const res = await get("/user/cart");
         this.list = res.json.products;
+        var totalPrice = 0;
+        this.list.map(function (item) {
+            totalPrice += item.price * item.count;
+        });
+        this.totalPrice = totalPrice;
     },
     methods: {
         update: async function (item) {
