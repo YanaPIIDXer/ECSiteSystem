@@ -65,7 +65,7 @@ export default {
                 return;
             }
             if (confirm("追加しました\nカートの中身を表示しますか？")) {
-                this.$route.push("/user/cart");
+                this.$router.push("/user/cart");
             }
         }
     }
