@@ -11,6 +11,7 @@
                     <div class="col-5 mt-5">
                         <p>{{ item.name }}</p>
                         <p>単価：{{ item.price }}</p>
+                        <p>小計：{{ item.price * item.count }}</p>
                     </div>
                     <div class="col-4 mt-5">
                         <label class="form-label">数量</label>
