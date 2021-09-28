@@ -22,6 +22,10 @@ public class ProductService {
         return result;
     }
 
+    public Product get(long id) {
+        return repository.getById(id);
+    }
+    
     // HACK:ページネーションを考える
     public List<Product> getAll() {
         return repository.findAll();

@@ -1,8 +1,12 @@
 package com.yanap.ecsite.controller;
 
+import com.yanap.ecsite.entity.Product;
+import com.yanap.ecsite.response.CartResponse;
 import com.yanap.ecsite.response.SimpleResultResponse;
+import com.yanap.ecsite.service.ProductService;
 import com.yanap.ecsite.session.Cart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class CartController {
     private static final String SESSION_NAME = "cart";
     
+    @Autowired
+    private ProductService productService;
+    
     // カート用セッション生成
     @ModelAttribute(SESSION_NAME)
     public Cart setupCartSession() {
@@ -25,8 +32,13 @@ public class CartController {
 
     // カートを取得
     @RequestMapping("/cart")
-    public Cart get(@ModelAttribute(SESSION_NAME) Cart cart) {
-        return cart;
+    public CartResponse get(@ModelAttribute(SESSION_NAME) Cart cart) {
+        CartResponse response = new CartResponse();
+        for (long id : cart.keySet()) {
+            Product product = productService.get(id);
+            response.addProduct(product, cart.get(id));
+        }
+        return response;
     }
 
     // カートに追加
