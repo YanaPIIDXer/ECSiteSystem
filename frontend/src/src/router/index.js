@@ -5,6 +5,7 @@ import AdminTop from '../views/AdminTop';
 import UserRegister from '../views/UserRegister';
 import LoginUser from '../views/LoginUser';
 import AddProduct from '../views/AddProduct';
+import CartView from '../views/CartView';
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: "/admin/add_product",
     name: "AddProduct",
     component: AddProduct
+  },
+  {
+    path: "/user/cart",
+    name: "CartView",
+    component: CartView
   },
 ]
 

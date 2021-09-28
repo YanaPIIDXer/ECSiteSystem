@@ -3,6 +3,7 @@
         <span class="ml-5">
             <span class="nav-item nav-link">{{ $store.getters.name }} 様</span>
         </span>
+        <router-link to="/user/cart"><span class="nav-item nav-link">カートへ</span></router-link>
         <span class="nav-item nav-link" @click="logout">ログアウト</span>
     </div>
 </template>

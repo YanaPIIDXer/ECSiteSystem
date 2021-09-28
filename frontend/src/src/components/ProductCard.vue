@@ -64,7 +64,9 @@ export default {
                 alert("追加に失敗しました");
                 return;
             }
-            alert("追加しました");
+            if (confirm("追加しました\nカートの中身を表示しますか？")) {
+                this.$route.push("/user/cart");
+            }
         }
     }
 }
