@@ -10,7 +10,7 @@
         <input type="text" class="form-control" v-model="imageUrl" />
         <label class="form-label">商品概要</label>
         <textarea class="form-control" v-model="description"></textarea>
-        <button @click="add">追加</button>
+        <button class="btn btn-primary" @click="add">追加</button>
     </div>
 </template>
 

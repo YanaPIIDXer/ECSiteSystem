@@ -1,7 +1,7 @@
 <template>
     <div>
         <label>パスワード</label><input type="password" v-model="password" /><br />
-        <button @click="login">ログイン</button>
+        <button class="btn btn-primary" @click="login">ログイン</button>
     </div>
 </template>
 

@@ -7,7 +7,7 @@
             <input type="text" class="form-control" v-model="email" />
             <label class="form-label">パスワード</label>
             <input type="password" class="form-control" v-model="password" />
-            <button @click="login">ログイン</button>
+            <button class="btn btn-primary" @click="login">ログイン</button>
         </div>
     </div>
 </template>

@@ -38,7 +38,7 @@
             <label>カード番号</label><div id="card-number"></div>
             <label>有効期限</label><div id="card-expiry"></div>
             <label>CVC</label><div id="card-cvc"></div>
-            <button @click="register">登録</button>
+            <button class="btn btn-primary" @click="register">登録</button>
         </div>
     </div>
 </template>

@@ -16,7 +16,7 @@
                     <div class="col-4 mt-5">
                         <label class="form-label">数量</label>
                         <input type="number" v-model="item.count" class="form-control" />
-                        <button @click="update(item)">変更</button>
+                        <button class="btn btn-primary" @click="update(item)">変更</button>
                     </div>
                 </div>
             </div>
