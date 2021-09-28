@@ -3,7 +3,7 @@
         <h1>カート</h1>
         <hr />
         <div class="container mt-5">
-            <div v-for="item in list" :key="item.name">
+            <div v-for="item in list" :key="item.id">
                 <div class="row">
                     <div class="col-3">
                         <img class="item_image" :src="item.imageUrl" />
