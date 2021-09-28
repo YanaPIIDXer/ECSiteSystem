@@ -72,23 +72,27 @@ public class CartController {
         User user = authUser.getUser();
         String stripeId = user.getStripeId();
         
+        int amount = 0;
         for (long id : cart.keySet()) {
             Product product = productService.get(id);
-            Map<String, Object> chargeMap = new HashMap<String, Object>();
-            chargeMap.put("amount", product.getPrice() * cart.get(id));
-            chargeMap.put("description", product.getName());
-            chargeMap.put("currency", "jpy");
-            chargeMap.put("customer", stripeId);
-            try {
-                Charge charge = Charge.create(chargeMap);
-                System.out.println(charge.getId());     // TODO:こいつをDBに保存する
-            } catch(StripeException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-                return new SimpleResultResponse(false);
-            }
-            cart.remove(id);
+            amount += product.getPrice() * cart.get(id);
         }
+        
+        Map<String, Object> chargeMap = new HashMap<String, Object>();
+        chargeMap.put("amount", amount);
+        chargeMap.put("description", "ECサイト ポートフォリオ");
+        chargeMap.put("currency", "jpy");
+        chargeMap.put("customer", stripeId);
+        try {
+            Charge charge = Charge.create(chargeMap);
+            System.out.println(charge.getId());     // TODO:こいつをDBに保存する
+        } catch(StripeException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return new SimpleResultResponse(false);
+        }
+
+        cart.clear();
         return new SimpleResultResponse(true);
     }
 }
