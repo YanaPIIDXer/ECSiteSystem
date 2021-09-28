@@ -10,10 +10,12 @@
                     </div>
                     <div class="col-5 mt-5">
                         <p>{{ item.name }}</p>
+                        <p>単価：{{ item.price }}</p>
                     </div>
                     <div class="col-4 mt-5">
                         <label class="form-label">数量</label>
                         <input type="number" v-model="item.count" class="form-control" />
+                        <button @click="update(item)">変更</button>
                     </div>
                 </div>
             </div>
@@ -34,6 +36,11 @@ export default {
     mounted: async function () {
         const res = await get("/user/cart");
         this.list = res.json.products;
+    },
+    methods: {
+        update: async function (item) {
+            alert(item.count);
+        },
     }
 }
 </script>
