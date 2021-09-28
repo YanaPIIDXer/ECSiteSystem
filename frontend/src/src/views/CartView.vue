@@ -1,7 +1,8 @@
 <template>
     <div>
         <h1>カート</h1>
-        <div class="container">
+        <hr />
+        <div class="container mt-5">
             <div v-for="item in list" :key="item.name">
                 <div class="row">
                     <div class="col-3">
