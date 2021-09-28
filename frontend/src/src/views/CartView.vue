@@ -28,7 +28,7 @@
                     合計価格：{{ totalPrice }}
                 </div>
                 <div class="col-12">
-                    <button @click="buy">購入する</button>
+                    <button class="btn btn-primary" v-bind:class="{disabled: totalPrice <= 0}" @click="buy">購入する</button>
                 </div>
             </div>
         </div>
