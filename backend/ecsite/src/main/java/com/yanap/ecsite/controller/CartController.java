@@ -54,4 +54,12 @@ public class CartController {
         // 仕様的には今の所無い
         return new SimpleResultResponse(true);
     }
+
+    @PostMapping("/cart/buy")
+    public SimpleResultResponse buy(@ModelAttribute(SESSION_NAME) Cart cart) {
+        // TODO:クレジットへの請求処理実装
+        
+        cart.clear();
+        return new SimpleResultResponse(true);
+    }
 }

@@ -24,8 +24,11 @@
         <hr />
         <div class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-12">
                     合計価格：{{ totalPrice }}
+                </div>
+                <div class="col-12">
+                    <button @click="buy">購入する</button>
                 </div>
             </div>
         </div>
@@ -33,7 +36,7 @@
 </template>
 
 <script>
-import { get } from '../modules/APIConnection';
+import { get, post } from '../modules/APIConnection';
 
 export default {
     name: "CartView",
@@ -53,8 +56,18 @@ export default {
         this.totalPrice = totalPrice;
     },
     methods: {
+        buy: async function () {
+            if (!confirm("購入しますか？")) { return; }
+            const res = await post("/user/cart/buy", null);
+            if (res.status != 200 || !res.json.result) {
+                alert("購入に失敗しました");
+                return;
+            }
+            alert("購入しました");
+            this.$router.push("/");
+        },
         update: async function (item) {
-            alert(item.count);
+            alert("未実装");
         },
     }
 }
