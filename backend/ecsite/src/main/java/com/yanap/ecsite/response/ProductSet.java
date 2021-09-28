@@ -6,6 +6,8 @@ import lombok.Getter;
 
 public class ProductSet {
     @Getter
+    private long id;
+    @Getter
     private String name;
     @Getter
     private int price;
@@ -17,6 +19,7 @@ public class ProductSet {
     private int count;
 
     public ProductSet(Product product, int count) {
+        id = product.getId();
         name = product.getName();
         price = product.getPrice();
         imageUrl = product.getImageUrl();
