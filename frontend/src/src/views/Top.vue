@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-3" v-for="item in list" :key="item.id">
-                <product-card :name="item.name" :imageUrl="item.imageUrl" :description="item.description" />
+                <product-card :id="item.id" :name="item.name" :imageUrl="item.imageUrl" :description="item.description" />
             </div>
         </div>
     </div>
