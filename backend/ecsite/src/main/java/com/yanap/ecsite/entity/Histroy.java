@@ -33,6 +33,8 @@ public class Histroy {
     @OneToOne
     private Product product;
 
+    private int count;
+
     private LocalDateTime dateTime;
 
     private int status;
