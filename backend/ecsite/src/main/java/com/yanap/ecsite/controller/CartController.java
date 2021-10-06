@@ -1,16 +1,20 @@
 package com.yanap.ecsite.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.yanap.ecsite.auth.AuthUser;
+import com.yanap.ecsite.entity.Histroy;
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.response.CartResponse;
 import com.yanap.ecsite.response.SimpleResultResponse;
+import com.yanap.ecsite.service.HistoryService;
 import com.yanap.ecsite.service.ProductService;
+import com.yanap.ecsite.service.UserService;
 import com.yanap.ecsite.session.Cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes(types = Cart.class)
 public class CartController {
     private static final String SESSION_NAME = "cart";
+
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private HistoryService historyService;
     
     @Autowired
     private ProductService productService;
@@ -75,6 +85,7 @@ public class CartController {
             amount += product.getPrice() * cart.get(id);
         }
         
+        String chargeId = "";
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         chargeMap.put("amount", amount);
         chargeMap.put("description", "ECサイト ポートフォリオ");
@@ -82,12 +93,26 @@ public class CartController {
         chargeMap.put("customer", stripeId);
         try {
             Charge charge = Charge.create(chargeMap);
-            System.out.println(charge.getId());     // TODO:こいつをDBに保存する
+            chargeId = charge.getId();
         } catch(StripeException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return new SimpleResultResponse(false);
         }
+
+        for (long id : cart.keySet()) {
+            Product product = productService.get(id);
+            Histroy history = new Histroy();
+            history.setProduct(product);
+            history.setUser(user);
+            history.setChargeId(chargeId);
+            history.setCount(cart.get(id));
+            history.setStatus(Histroy.STATUS_PENDING);
+            history.setDateTime(LocalDateTime.now());
+            user.getHistories().add(history);
+            historyService.save(history);
+        }
+        userService.save(user);
 
         cart.clear();
         return new SimpleResultResponse(true);
