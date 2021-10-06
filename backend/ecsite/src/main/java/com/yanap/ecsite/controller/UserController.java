@@ -1,14 +1,20 @@
 package com.yanap.ecsite.controller;
 
+import java.util.List;
+
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
 import com.stripe.param.CustomerCreateParams;
+import com.yanap.ecsite.auth.AuthUser;
+import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.request.UserRegisterRequest;
+import com.yanap.ecsite.response.UserHistoryResponse;
 import com.yanap.ecsite.response.UserRegisterResponse;
 import com.yanap.ecsite.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -57,5 +63,19 @@ public class UserController {
         }
 
         return new UserRegisterResponse(true, "");
+    }
+
+    // 購入履歴
+    @RequestMapping("/history")
+    public UserHistoryResponse history(@AuthenticationPrincipal AuthUser authUser) {
+        UserHistoryResponse response = new UserHistoryResponse();
+        User user = authUser.getUser();
+        List<History> histories = user.getHistories();
+        for (History history : histories) {
+            if (history.getStatus() != History.STATUS_CANCELED) {
+                response.add(history.getProduct(), history.getCount(), history.getStatus());
+            }
+        }
+        return response;
     }
 }
