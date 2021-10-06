@@ -4,6 +4,7 @@
             <span class="nav-item nav-link">{{ $store.getters.name }} 様</span>
         </span>
         <router-link to="/user/cart"><span class="nav-item nav-link">カートへ</span></router-link>
+        <router-link to="/user/history"><span class="nav-item nav-link">購入履歴</span></router-link>
         <span class="nav-item nav-link" @click="logout">ログアウト</span>
     </div>
 </template>

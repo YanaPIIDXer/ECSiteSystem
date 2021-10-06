@@ -6,6 +6,7 @@ import UserRegister from '../views/UserRegister';
 import LoginUser from '../views/LoginUser';
 import AddProduct from '../views/AddProduct';
 import CartView from '../views/CartView';
+import UserHistoryView from '../views/UserHistoryView';
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: "/user/cart",
     name: "CartView",
     component: CartView
+  },
+  {
+    path: "/user/history",
+    name: "UserHistoryView",
+    component: UserHistoryView
   },
 ]
 
