@@ -7,6 +7,7 @@ import com.yanap.ecsite.entity.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 public class UserHistoryResponse {
     @Data
@@ -17,6 +18,7 @@ public class UserHistoryResponse {
         private int status;
     }
 
+    @Getter
     private List<Info> list = new ArrayList<Info>();
 
     // 追加
