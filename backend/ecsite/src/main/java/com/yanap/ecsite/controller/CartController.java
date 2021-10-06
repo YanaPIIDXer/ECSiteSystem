@@ -7,7 +7,7 @@ import java.util.Map;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.yanap.ecsite.auth.AuthUser;
-import com.yanap.ecsite.entity.Histroy;
+import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.response.CartResponse;
@@ -102,12 +102,12 @@ public class CartController {
 
         for (long id : cart.keySet()) {
             Product product = productService.get(id);
-            Histroy history = new Histroy();
+            History history = new History();
             history.setProduct(product);
             history.setUser(user);
             history.setChargeId(chargeId);
             history.setCount(cart.get(id));
-            history.setStatus(Histroy.STATUS_PENDING);
+            history.setStatus(History.STATUS_PENDING);
             history.setDateTime(LocalDateTime.now());
             user.getHistories().add(history);
             historyService.save(history);

@@ -36,5 +36,5 @@ public class User {
     private String stripeId;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Histroy> histories;
+    private List<History> histories;
 }

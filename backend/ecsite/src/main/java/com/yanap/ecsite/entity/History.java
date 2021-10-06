@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "histories")
 @NoArgsConstructor
-public class Histroy {
+public class History {
     public static final int STATUS_PENDING = 0;
     public static final int STATUS_SHIPPED = 1;
     public static final int STATUS_CANCELED = 2;
