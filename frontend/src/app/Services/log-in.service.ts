@@ -11,10 +11,10 @@ export class LogInService {
     this.role = "";
   }
 
-  isLogIn(): boolean { return this.role != ""; }
-  isUser(): boolean { return this.role == "USER"; }
-  isAdmin(): boolean { return this.role == "ADMIN"; }
-  logInAsUser(): void { this.role = "USER"; }
-  logInAsAdmin(): void { this.role = "ADMIN"; }
-  logOut(): void { this.role = ""; }
+  IsLogIn(): boolean { return this.role != ""; }
+  IsUser(): boolean { return this.role == "USER"; }
+  IsAdmin(): boolean { return this.role == "ADMIN"; }
+  LogInAsUser(): void { this.role = "USER"; }
+  LogInAsAdmin(): void { this.role = "ADMIN"; }
+  LogOut(): void { this.role = ""; }
 }
