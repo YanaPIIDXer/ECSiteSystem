@@ -28,7 +28,7 @@ export class AdminLoginComponent implements OnInit {
       return;
     }
     this.logInService.LogInAsAdmin();
-    this.router.navigate(["/"]);    // TODO:管理者トップページに飛ばす
+    this.router.navigate(["/admin_top"]);
   }
 
 }

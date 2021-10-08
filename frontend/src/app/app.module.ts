@@ -11,6 +11,7 @@ import { NavBarAdminComponent } from './Components/NavBar/nav-bar-admin/nav-bar-
 import { NavBarUserComponent } from './Components/NavBar/nav-bar-user/nav-bar-user.component';
 import { AdminLoginComponent } from './Views/admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
+import { AdminTopComponent } from './Views/admin-top/admin-top.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     NavBarNotLogInComponent,
     NavBarAdminComponent,
     NavBarUserComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminTopComponent
   ],
   imports: [
     BrowserModule,
