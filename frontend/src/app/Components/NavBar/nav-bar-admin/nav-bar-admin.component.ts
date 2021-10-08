@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LogInService } from 'src/app/Services/log-in.service';
+import conn from '../../../Modules/apiconnection';
 
 @Component({
   selector: 'nav-bar-admin',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logInService: LogInService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  async logout(): Promise<void> {
+    if (!confirm("ログアウトしますか？")) { return; }
+
+    await conn.get("/admin/logout");
+    this.logInService.LogOut();
+    this.router.navigate(["/"]);
   }
 
 }
