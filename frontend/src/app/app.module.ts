@@ -10,6 +10,7 @@ import { NavBarNotLogInComponent } from './Components/NavBar/nav-bar-not-log-in/
 import { NavBarAdminComponent } from './Components/NavBar/nav-bar-admin/nav-bar-admin.component';
 import { NavBarUserComponent } from './Components/NavBar/nav-bar-user/nav-bar-user.component';
 import { AdminLoginComponent } from './Views/admin-login/admin-login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AdminLoginComponent } from './Views/admin-login/admin-login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

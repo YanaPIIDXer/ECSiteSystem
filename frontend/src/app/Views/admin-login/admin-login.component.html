@@ -1,4 +1,4 @@
 <div>
-    <label>パスワード</label><input type="password" v-model="password" /><br />
-    <button class="btn btn-primary">ログイン</button>
+    <label>パスワード</label><input type="password" [(ngModel)]="password" /><br />
+    <button class="btn btn-primary" on-click="submit()">ログイン</button>
 </div>
