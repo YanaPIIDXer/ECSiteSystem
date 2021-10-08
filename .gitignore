@@ -1,2 +1,5 @@
 .vscode/
 mysql/data/
+
+# リプレースの参考用にローカルには残しておくもの
+frontend_old/
