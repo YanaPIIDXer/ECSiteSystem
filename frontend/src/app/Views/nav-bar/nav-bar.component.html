@@ -8,14 +8,14 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <span *ngIf="!logInService.IsLogIn()">
-                未ログイン
+                <nav-bar-not-log-in></nav-bar-not-log-in>
             </span>
             <span *ngElse>
                 <span *ngIf="logInService.IsUser()">
-                    ユーザ
+                    <nav-bar-user></nav-bar-user>
                 </span>
                 <span *ngElse>
-                    管理者
+                    <nav-bar-admin></nav-bar-admin>
                 </span>
             </span>
     </div>
