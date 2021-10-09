@@ -19,7 +19,7 @@ export class NavBarAdminComponent implements OnInit {
     if (!confirm("ログアウトしますか？")) { return; }
 
     await conn.get("/admin/logout");
-    this.logInService.LogOut();
+    this.logInService.logOut();
     this.router.navigate(["/"]);
   }
 

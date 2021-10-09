@@ -7,11 +7,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <span *ngIf="!logInService.IsLogIn(); else elseLogIn">
+            <span *ngIf="!logInService.isLogIn(); else elseLogIn">
                 <nav-bar-not-log-in></nav-bar-not-log-in>
             </span>
             <ng-template #elseLogIn>
-                <span *ngIf="logInService.IsUser(); else elseIsUser">
+                <span *ngIf="logInService.isUser(); else elseIsUser">
                     <nav-bar-user></nav-bar-user>
                 </span>
                 <ng-template #elseIsUser>

@@ -27,7 +27,7 @@ export class AdminLoginComponent implements OnInit {
       alert("ログインに失敗しました。");
       return;
     }
-    this.logInService.LogInAsAdmin();
+    this.logInService.logInAsAdmin();
     this.router.navigate(["/admin_top"]);
   }
 
