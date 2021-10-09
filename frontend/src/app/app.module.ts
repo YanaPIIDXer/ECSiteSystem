@@ -15,6 +15,7 @@ import { AdminTopComponent } from './Views/admin-top/admin-top.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { UserRegisterComponent } from './Views/user-register/user-register.component';
 import { UserLoginComponent } from './Views/user-login/user-login.component';
+import { ProductCardComponent } from './Components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserLoginComponent } from './Views/user-login/user-login.component';
     AdminLoginComponent,
     AdminTopComponent,
     UserRegisterComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
