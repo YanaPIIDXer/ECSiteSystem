@@ -1,4 +1,4 @@
-<div>
-    <label>パスワード</label><input type="password" [(ngModel)]="password" /><br />
-    <button class="btn btn-primary" on-click="submit()">ログイン</button>
-</div>
+<form (ngSubmit)="submit()">
+    <label class="form-label">パスワード</label><input name="password" class="form-control" type="password" [(ngModel)]="password" /><br />
+    <input type="submit" class="form-control btn btn-primary" value="ログイン" />
+</form>
