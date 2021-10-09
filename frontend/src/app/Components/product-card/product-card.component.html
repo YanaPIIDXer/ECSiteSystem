@@ -4,26 +4,10 @@
         <div class="card-body">
             <h5 class="card-title">{{ product?.name }}</h5>
             <p class="card-text">{{ product?.description }}</p>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCartModal">カートに入れる</button>
         </div>
-    </div>
-    
-    <div class="modal fade" id="addCartModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">{{ product?.name }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label class="form-label">数量</label>
-                    <input type="number" [(ngModel)]="count" class="form-control" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
-                    <button type="button" class="btn btn-primary" on-click="add()" data-bs-dismiss="modal">カートに入れる</button>
-                </div>
-            </div>
+        <div class="card-footer">
+            <label>数量</label><input type="number" [(ngModel)]="count" />
+            <button class="btn btn-primary" on-click="add()">カートに入れる</button>
         </div>
     </div>
 </div>
