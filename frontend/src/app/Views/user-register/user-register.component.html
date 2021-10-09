@@ -39,8 +39,8 @@
     </table>
     <ngx-stripe-card-group>
         <label>カード番号</label><ngx-stripe-card-number [options]="cardElementOptions" #cardNumberElement></ngx-stripe-card-number>
-        <label>有効期限</label><ngx-stripe-card-expiry [options]="cardElementOptions" #cardExpiryElement></ngx-stripe-card-expiry>
-        <label>CVC</label><ngx-stripe-card-cvc [options]="cardElementOptions" #cardCvcElement></ngx-stripe-card-cvc>
+        <label>有効期限</label><ngx-stripe-card-expiry [options]="cardElementOptions"></ngx-stripe-card-expiry>
+        <label>CVC</label><ngx-stripe-card-cvc [options]="cardElementOptions"></ngx-stripe-card-cvc>
     </ngx-stripe-card-group>
     <input type="submit" class="btn btn-primary" value="登録" />    
 </form>

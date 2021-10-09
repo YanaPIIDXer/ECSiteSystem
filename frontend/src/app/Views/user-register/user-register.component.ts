@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
+import { StripeCardNumberComponent, StripeService } from 'ngx-stripe';
+import conn from '../../Modules/apiconnection';
 
 interface DummyCard {
   name: string
@@ -21,8 +24,9 @@ export class UserRegisterComponent implements OnInit {
   address: string
   dummyCards: DummyCard[]
   cardElementOptions: StripeCardElementOptions
+  @ViewChild("cardNumberElement") cardElement!: StripeCardNumberComponent
 
-  constructor() {
+  constructor(private stripeService: StripeService, private router: Router) {
     this.name = "";
     this.email = "";
     this.password = "";
@@ -69,9 +73,31 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async submit(form: NgForm): Promise<void> {
+  submit(form: NgForm): void {
     if (form.invalid) { return; }
     if (!confirm("登録しますか？")) { return; }
-  }
 
+    this.stripeService.createToken(this.cardElement.element)
+                      .subscribe(async (result) => {
+                        if (result.error) {
+                          alert("カードの認証に失敗しました");
+                          return;
+                        }
+                        var token = result.token?.id!;
+                        var params = new URLSearchParams();
+                        params.append("name", this.name);
+                        params.append("email", this.email);
+                        params.append("password", this.password);
+                        params.append("address", this.address);
+                        params.append("token", token);
+                        const res = await conn.post("/user/register", params);
+                        console.log(res);
+                        if (res.status != 200 || !res.json.result) {
+                          alert("登録に失敗しました");
+                          return;
+                        }
+                        alert("登録しました");
+                        this.router.navigate(["/"]);
+                      });
+  }
 }
