@@ -16,6 +16,7 @@ import { UserRegisterComponent } from './Views/user-register/user-register.compo
 import { UserLoginComponent } from './Views/user-login/user-login.component';
 import { ProductCardComponent } from './Components/product-card/product-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from './Views/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminTopComponent,
     UserRegisterComponent,
     UserLoginComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

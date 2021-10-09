@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/Models/product';
 import conn from '../../Modules/apiconnection';
 
@@ -12,7 +13,7 @@ export class ProductCardComponent implements OnInit {
   @Input() product: Product | null
   count: number
 
-  constructor() {
+  constructor(private router: Router) {
     this.count = 0;
     this.product = null;
   }
@@ -37,7 +38,9 @@ export class ProductCardComponent implements OnInit {
       alert("追加に失敗しました。");
       return;
     }
-    alert("追加しました。");
+    if (confirm("追加しました。カートを確認しますか？")) {
+      this.router.navigate(["/cart"]);
+    }
   }
 
 }
