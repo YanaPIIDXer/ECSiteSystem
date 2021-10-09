@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import conn from '../../Modules/apiconnection';
 
 @Component({
   selector: 'app-top-view',
@@ -9,7 +10,9 @@ export class TopViewComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const res = await conn.get("/product/list");
+    console.log(res);
   }
 
 }
