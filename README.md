@@ -1,11 +1,11 @@
 # ECSiteSystem
-ECサイトシステム。Vue3とSpringBootのポートフォリオ
+ECサイトシステム。AngularとSpringBootのポートフォリオ
 
 ## 使用技術
 
 |Key|Value|Source|
 |---|---|---|
-|フロントエンド|Vue3|[frontend/src/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/frontend/src)|
+|フロントエンド|Angular|[frontend/src/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/frontend/src)|
 |バックエンド|Java + SpringBoot|[backend/ecsite/以下](https://github.com/YanaPIIDXer/ECSiteSystem/tree/develop/backend/ecsite)|
 |決済システム|Stripe|---|
 
