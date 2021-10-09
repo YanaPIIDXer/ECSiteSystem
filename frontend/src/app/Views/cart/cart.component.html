@@ -26,7 +26,7 @@
             合計価格：{{ totalPrice | currency: 'JPY' }}
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" [class.disabled]="totalPrice <= 0">購入する</button>
+            <button class="btn btn-primary" [class.disabled]="totalPrice <= 0" on-click="buy()">購入する</button>
         </div>
     </div>
 </div>
