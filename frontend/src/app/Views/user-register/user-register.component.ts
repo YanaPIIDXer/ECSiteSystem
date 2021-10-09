@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StripeCardElementOptions } from '@stripe/stripe-js';
 
 interface DummyCard {
   name: string
@@ -18,6 +19,7 @@ export class UserRegisterComponent implements OnInit {
   confirmPassword: string
   address: string
   dummyCards: DummyCard[]
+  cardElementOptions: StripeCardElementOptions
 
   constructor() {
     this.name = "";
@@ -36,6 +38,31 @@ export class UserRegisterComponent implements OnInit {
       {name: "JCB1", number: "3530111333300000"},
       {name: "JCB2", number: "3566002020360505"},
     ];
+
+    // https://dev.classmethod.jp/articles/customize-stripe-elements/ より失敬
+    this.cardElementOptions = {
+      style: {
+        base: {
+          color: '#32325D',
+          fontWeight: 500,
+          fontFamily: 'Source Code Pro, Consolas, Menlo, monospace',
+          fontSize: '1.2em',
+          fontSmoothing: 'antialiased',
+          '::placeholder': {
+          color: '#CFD7DF'
+          },
+          ':-webkit-autofill': {
+            color: '#e39f48'
+          }
+        },
+        invalid: {
+          color: '#E25950',
+          '::placeholder': {
+          color: '#FFCCA5'
+          }
+        }
+      }
+    }
   }
 
   ngOnInit(): void {
