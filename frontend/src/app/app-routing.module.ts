@@ -7,6 +7,7 @@ import { AdminTopComponent } from './Views/admin-top/admin-top.component';
 import { UserRegisterComponent } from './Views/user-register/user-register.component';
 import { UserLoginComponent } from './Views/user-login/user-login.component';
 import { CartComponent } from './Views/cart/cart.component';
+import { AddProductComponent } from './Views/add-product/add-product.component';
 
 const routes: Routes = [
   { path: "", component: TopViewComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "register", component: UserRegisterComponent },
   { path: "login", component: UserLoginComponent },
   { path: "cart", component: CartComponent },
+  { path: "admin/add_product", component: AddProductComponent },
 ];
 
 @NgModule({

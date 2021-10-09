@@ -1,0 +1,13 @@
+<h1>商品追加</h1>
+<hr />
+<form>    
+    <label class="form-label">商品名</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="name" />
+    <label class="form-label">値段</label>
+    <input type="number" class="form-control" name="price" [(ngModel)]="price" />
+    <label class="form-label">画像URL</label>
+    <input type="text" class="form-control" name="imageUrl" [(ngModel)]="imageUrl" />
+    <label class="form-label">商品概要</label>
+    <textarea class="form-control" name="description" [(ngModel)]="description"></textarea>
+    <input type="submit" class="btn btn-primary" value="追加" />
+</form>
