@@ -6,6 +6,9 @@ services:
             - 3001:3001
         volumes:
             - ./backend/ecsite:/app
+        environment:
+            # 暫定処理
+            STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
         depends_on:
             - db
 
