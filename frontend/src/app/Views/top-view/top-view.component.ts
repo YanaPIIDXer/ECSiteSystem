@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import conn from '../../Modules/apiconnection';
+import { Product } from '../../Models/product';
 
 @Component({
   selector: 'app-top-view',
@@ -8,11 +9,15 @@ import conn from '../../Modules/apiconnection';
 })
 export class TopViewComponent implements OnInit {
 
-  constructor() { }
+  list: Product[]
+
+  constructor() {
+    this.list = [];
+  }
 
   async ngOnInit(): Promise<void> {
     const res = await conn.get("/product/list");
-    console.log(res);
+    if (res.status != 200) { return; }
+    this.list = res.json;
   }
-
 }
