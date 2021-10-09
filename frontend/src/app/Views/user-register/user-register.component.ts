@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 
 interface DummyCard {
@@ -66,6 +67,11 @@ export class UserRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  async submit(form: NgForm): Promise<void> {
+    if (form.invalid) { return; }
+    if (!confirm("登録しますか？")) { return; }
   }
 
 }
