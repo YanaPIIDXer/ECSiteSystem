@@ -13,6 +13,7 @@ import { AdminLoginComponent } from './Views/admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { AdminTopComponent } from './Views/admin-top/admin-top.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { UserRegisterComponent } from './Views/user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     NavBarAdminComponent,
     NavBarUserComponent,
     AdminLoginComponent,
-    AdminTopComponent
+    AdminTopComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
