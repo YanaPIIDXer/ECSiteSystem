@@ -7,15 +7,23 @@ export class LogInService {
 
   private role: string
 
+  private name: string
+
   constructor() {
     const role = sessionStorage.getItem("role");
     this.role = role ? role : "";
+    const name = sessionStorage.getItem("name");
+    this.name = name ? name : "";
   }
 
   isLogIn(): boolean { return this.role != ""; }
   isUser(): boolean { return this.role == "USER"; }
   isAdmin(): boolean { return this.role == "ADMIN"; }
-  logInAsUser(): void { this.setRole("USER"); }
+  logInAsUser(name: string): void {
+    this.setRole("USER");
+    this.name = name;
+    sessionStorage.setItem("name", name);
+  }
   logInAsAdmin(): void {this.setRole("ADMIN"); }
   logOut(): void { this.role = ""; }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LogInService } from 'src/app/Services/log-in.service';
 import conn from '../../Modules/apiconnection';
 
 @Component({
@@ -12,7 +13,7 @@ export class UserLoginComponent implements OnInit {
   email: string
   password: string
 
-  constructor(private router: Router) {
+  constructor(private logInService: LogInService, private router: Router) {
     this.email = "";
     this.password = "";
   }
@@ -30,6 +31,7 @@ export class UserLoginComponent implements OnInit {
       return;
     }
 
+    this.logInService.logInAsUser(res.json.name);
     this.router.navigate(["/"]);
   }
 
