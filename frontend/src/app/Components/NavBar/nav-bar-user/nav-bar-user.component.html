@@ -1,1 +1,8 @@
-<p>nav-bar-user works!</p>
+<div class="navbar-nav">
+    <span class="ml-5">
+        <span class="nav-item nav-link">{{ logInService.getUserName() }} 様</span>
+    </span>
+    <a routerLink="/user/cart" class="nav-item nav-link">カートへ</a>
+    <a routerLink="/user/history" class="nav-item nav-link">購入履歴</a>
+    <span class="nav-item nav-link logout" on-click="logout()">ログアウト</span>
+</div>

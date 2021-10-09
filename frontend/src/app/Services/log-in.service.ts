@@ -24,6 +24,7 @@ export class LogInService {
     this.name = name;
     sessionStorage.setItem("name", name);
   }
+  getUserName(): string { return this.name; }
   logInAsAdmin(): void {this.setRole("ADMIN"); }
   logOut(): void { this.role = ""; }
 
