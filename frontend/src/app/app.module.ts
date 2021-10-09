@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopViewComponent } from './Views/top-view/top-view.component';
 import { NavBarComponent } from './Views/nav-bar/nav-bar.component';
 import { NavBarNotLogInComponent } from './Components/NavBar/nav-bar-not-log-in/nav-bar-not-log-in.component';
@@ -34,7 +33,6 @@ import { ProductCardComponent } from './Components/product-card/product-card.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     FormsModule,
     NgxStripeModule.forRoot("pk_test_51Je3M8CpeCYoB8PV01iYTyFdrOZnCnGbzxJuV8VBNoV5ucwA4lDoyOLyKxl5n80mheXFDrLcFKV3VyTmd07pQ5pN00wn2y8qrR"),
   ],
