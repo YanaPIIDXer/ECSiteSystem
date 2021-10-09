@@ -29,11 +29,9 @@
             </tr>
         </thead>
         <tbody>
-            <!--
-            <tr v-for="item in dummyCards" :key="item.number">
+            <tr *ngFor="let item of dummyCards">
                 <td>{{ item.name }}</td><td>{{ item.number }}</td>
             </tr>
-            -->
         </tbody>
     </table>
     <label>カード番号</label><div id="card-number"></div>
