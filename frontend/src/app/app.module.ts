@@ -15,6 +15,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { UserRegisterComponent } from './Views/user-register/user-register.component';
 import { UserLoginComponent } from './Views/user-login/user-login.component';
 import { ProductCardComponent } from './Components/product-card/product-card.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProductCardComponent } from './Components/product-card/product-card.com
     AppRoutingModule,
     FormsModule,
     NgxStripeModule.forRoot("pk_test_51Je3M8CpeCYoB8PV01iYTyFdrOZnCnGbzxJuV8VBNoV5ucwA4lDoyOLyKxl5n80mheXFDrLcFKV3VyTmd07pQ5pN00wn2y8qrR"),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
