@@ -12,6 +12,7 @@ import { NavBarUserComponent } from './Components/NavBar/nav-bar-user/nav-bar-us
 import { AdminLoginComponent } from './Views/admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { AdminTopComponent } from './Views/admin-top/admin-top.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminTopComponent } from './Views/admin-top/admin-top.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxStripeModule.forRoot("pk_test_51Je3M8CpeCYoB8PV01iYTyFdrOZnCnGbzxJuV8VBNoV5ucwA4lDoyOLyKxl5n80mheXFDrLcFKV3VyTmd07pQ5pN00wn2y8qrR"),
   ],
   providers: [],
   bootstrap: [AppComponent]
