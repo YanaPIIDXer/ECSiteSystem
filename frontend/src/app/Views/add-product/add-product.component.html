@@ -1,6 +1,6 @@
 <h1>商品追加</h1>
 <hr />
-<form>    
+<form (submit)="submit()">    
     <label class="form-label">商品名</label>
     <input type="text" class="form-control" name="name" [(ngModel)]="name" />
     <label class="form-label">値段</label>
