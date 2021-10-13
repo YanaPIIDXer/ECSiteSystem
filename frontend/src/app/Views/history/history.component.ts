@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoryItem } from 'src/app/Models/history-item';
+import conn from '../../Modules/apiconnection';
 
 @Component({
   selector: 'history',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  list: HistoryItem[]
+  
+  constructor() {
+    this.list = [];
+  }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const res = await conn.get("/user/history");
+    if (res.status != 200) {
+      alert("購入履歴の取得に失敗しました");
+      return;
+    }
+    this.list = res.json.list;
   }
 
 }
