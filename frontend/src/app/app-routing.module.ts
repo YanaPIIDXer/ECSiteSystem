@@ -8,6 +8,7 @@ import { UserRegisterComponent } from './Views/user-register/user-register.compo
 import { UserLoginComponent } from './Views/user-login/user-login.component';
 import { CartComponent } from './Views/cart/cart.component';
 import { AddProductComponent } from './Views/add-product/add-product.component';
+import { HistoryComponent } from './Views/history/history.component';
 import { AdminOnlyGuard } from './Guards/admin-only.guard';
 import { UserOnlyGuard } from './Guards/user-only.guard';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "login", component: UserLoginComponent },
   { path: "cart", component: CartComponent, canActivate: [ UserOnlyGuard ] },
   { path: "admin/add_product", component: AddProductComponent, canActivate: [ AdminOnlyGuard ] },
+  { path: "history", component: HistoryComponent, canActivate: [ UserOnlyGuard ] },
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ import { ProductCardComponent } from './Components/product-card/product-card.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartComponent } from './Views/cart/cart.component';
 import { AddProductComponent } from './Views/add-product/add-product.component';
+import { HistoryComponent } from './Views/history/history.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddProductComponent } from './Views/add-product/add-product.component';
     UserLoginComponent,
     ProductCardComponent,
     CartComponent,
-    AddProductComponent
+    AddProductComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
