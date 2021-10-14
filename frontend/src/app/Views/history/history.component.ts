@@ -17,7 +17,11 @@ export class HistoryComponent implements OnInit {
     this.list = [];
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    this.updateList();
+  }
+
+  private async updateList(): Promise<void> {
     const res = await conn.get("/user/history");
     if (res.status != 200) {
       alert("購入履歴の取得に失敗しました");
@@ -36,7 +40,7 @@ export class HistoryComponent implements OnInit {
       return;
     }
     alert("キャンセルしました、");
-    this.router.navigate(["/history"]);
+    this.updateList();
   }
 
 }
