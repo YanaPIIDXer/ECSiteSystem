@@ -1,4 +1,6 @@
+import { resolveSanitizationFn } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HistoryItem } from 'src/app/Models/history-item';
 import conn from '../../Modules/apiconnection';
 
@@ -11,7 +13,7 @@ export class HistoryComponent implements OnInit {
 
   list: HistoryItem[]
   
-  constructor() {
+  constructor(private router: Router) {
     this.list = [];
   }
 
@@ -22,6 +24,19 @@ export class HistoryComponent implements OnInit {
       return;
     }
     this.list = res.json.list;
+  }
+
+  async cancel(id: number): Promise<void> {
+    if (!confirm("注文をキャンセルしますか？")) { return; }
+    var params = new URLSearchParams();
+    params.append("historyId", id.toString());
+    const res = await conn.post("/user/cancel", params);
+    if (res.status != 200 || !res.json.result) {
+      alert("キャンセルに失敗しました。");
+      return;
+    }
+    alert("キャンセルしました、");
+    this.router.navigate(["/history"]);
   }
 
 }
