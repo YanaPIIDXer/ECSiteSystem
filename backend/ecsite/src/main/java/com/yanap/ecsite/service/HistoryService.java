@@ -6,7 +6,6 @@ import java.util.Map;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Refund;
 import com.yanap.ecsite.entity.History;
-import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.repository.HistoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
