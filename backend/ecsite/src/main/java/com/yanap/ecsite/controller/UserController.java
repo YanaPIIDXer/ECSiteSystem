@@ -9,8 +9,10 @@ import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.request.UserRegisterRequest;
+import com.yanap.ecsite.response.SimpleResultResponse;
 import com.yanap.ecsite.response.UserHistoryResponse;
 import com.yanap.ecsite.response.UserRegisterResponse;
+import com.yanap.ecsite.service.HistoryService;
 import com.yanap.ecsite.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // ユーザコントローラ
@@ -28,6 +31,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HistoryService historyService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -77,5 +83,11 @@ public class UserController {
             }
         }
         return response;
+    }
+
+    // 注文のキャンセル
+    @RequestMapping("/cancel")
+    public SimpleResultResponse cancel(@RequestParam("historyId") long historyId) {
+        return new SimpleResultResponse(historyService.cancel(historyId));
     }
 }
