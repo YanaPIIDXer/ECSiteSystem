@@ -13,6 +13,7 @@ public class UserHistoryResponse {
     @Data
     @AllArgsConstructor
     public class Info {
+        private long id;
         private Product product;
         private int count;
         private int status;
@@ -22,8 +23,8 @@ public class UserHistoryResponse {
     private List<Info> list = new ArrayList<Info>();
 
     // 追加
-    public void add(Product product, int count, int status) {
-        Info info = new Info(product, count, status);
+    public void add(long id, Product product, int count, int status) {
+        Info info = new Info(id, product, count, status);
         list.add(info);
     }
 }

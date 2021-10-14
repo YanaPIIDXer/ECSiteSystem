@@ -79,7 +79,7 @@ public class UserController {
         List<History> histories = user.getHistories();
         for (History history : histories) {
             if (history.getStatus() != History.STATUS_CANCELED) {
-                response.add(history.getProduct(), history.getCount(), history.getStatus());
+                response.add(history.getId(), history.getProduct(), history.getCount(), history.getStatus());
             }
         }
         return response;
