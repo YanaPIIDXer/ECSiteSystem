@@ -87,7 +87,14 @@ public class UserController {
 
     // 注文のキャンセル
     @RequestMapping("/cancel")
-    public SimpleResultResponse cancel(@RequestParam("historyId") long historyId) {
-        return new SimpleResultResponse(historyService.cancel(historyId));
+    public SimpleResultResponse cancel(@RequestParam("historyId") long historyId, @AuthenticationPrincipal AuthUser authUser) {
+        if (!historyService.cancel(historyId)) { return new SimpleResultResponse(false); }
+
+        // authUserのリストは古いままなので再取得して上書きする
+        // ※これをやらないと、ログアウトするまで情報が古いまま
+        User tmp = userService.find(authUser.getUser().getId());
+        authUser.getUser().setHistories(tmp.getHistories());
+
+        return new SimpleResultResponse(true);
     }
 }

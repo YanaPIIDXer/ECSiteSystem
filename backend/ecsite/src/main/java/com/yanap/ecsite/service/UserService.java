@@ -1,5 +1,7 @@
 package com.yanap.ecsite.service;
 
+import java.util.Optional;
+
 import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.repository.UserRepository;
@@ -22,6 +24,12 @@ public class UserService implements UserDetailsService {
             result = (repository.save(user) != null);
         } catch (Exception e) { return false; }
         return result;
+    }
+
+    public User find(long id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty()) { return null; }
+        return user.get();
     }
 
     @Override
