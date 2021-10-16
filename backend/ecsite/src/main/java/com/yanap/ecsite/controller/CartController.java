@@ -73,6 +73,21 @@ public class CartController {
         return new SimpleResultResponse(true);
     }
 
+    // 個数の変更
+    @PostMapping("/cart/change")
+    public SimpleResultResponse update(@RequestParam("id") long id, @RequestParam("count") int count, @ModelAttribute(SESSION_NAME) Cart cart)
+    {
+        if (!cart.containsKey(id)) { return new SimpleResultResponse(false); }
+        if (count > 0)
+        {
+            cart.replace(id, count);
+        } else {
+            cart.remove(id);
+        }
+
+        return new SimpleResultResponse(true);
+    }
+
     // 購入処理
     @PostMapping("/cart/buy")
     public SimpleResultResponse buy(@ModelAttribute(SESSION_NAME) Cart cart, @AuthenticationPrincipal AuthUser authUser) {
