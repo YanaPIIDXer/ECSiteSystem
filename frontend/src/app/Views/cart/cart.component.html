@@ -13,8 +13,8 @@
             </div>
             <div class="col-4 mt-5">
                 <label class="form-label">数量</label>
-                <input type="number" [(ngModel)]="item.count" class="form-control" />
-                <button class="btn btn-primary">変更</button>
+                <input type="number" [(ngModel)]="item.changedCount" class="form-control" />
+                <button class="btn btn-primary" (click)="change(item.id, item.changedCount)">変更</button>
             </div>
         </div>
     </div>

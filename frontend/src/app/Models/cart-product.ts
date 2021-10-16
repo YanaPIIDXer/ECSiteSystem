@@ -5,4 +5,5 @@ export interface CartProduct {
     imageUrl: string
     description: string
     count: number
+    changedCount: number
 }
