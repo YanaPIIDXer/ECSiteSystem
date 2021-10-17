@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.response.SimpleResultResponse;
+import com.yanap.ecsite.response.UserHistoryResponse;
 import com.yanap.ecsite.service.HistoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,19 @@ public class AdminController {
 
     // 発送待ちの注文リスト
     @RequestMapping("/order")
-    public List<History> orderList()
+    public UserHistoryResponse orderList()
     {
-        return historyService.collectStatusIsPending();
+        List<History> list = historyService.collectStatusIsPending();
+        UserHistoryResponse response = new UserHistoryResponse();
+        for (History item : list)
+        {
+            if (item.getStatus() == History.STATUS_PENDING)
+            {
+                response.add(item.getId(), item.getProduct(), item.getCount(), item.getStatus());
+            }
+        }
+
+        return response;
     }
 
     // 発送
