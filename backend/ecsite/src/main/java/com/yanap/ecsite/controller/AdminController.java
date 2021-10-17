@@ -53,7 +53,6 @@ public class AdminController {
         History history = historyService.find(id);
         if (history == null) { return new SimpleResultResponse(false); }
 
-        history.setStatus(History.STATUS_CANCELED);
-        return new SimpleResultResponse(historyService.save(history));
+        return new SimpleResultResponse(historyService.cancel(id));
     }
 }
