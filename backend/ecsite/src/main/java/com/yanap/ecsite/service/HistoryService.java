@@ -1,6 +1,7 @@
 package com.yanap.ecsite.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.stripe.exception.StripeException;
@@ -15,6 +16,11 @@ import org.springframework.stereotype.Service;
 public class HistoryService {
     @Autowired
     private HistoryRepository repository;
+
+    // 発注待ちを列挙
+    public List<History> collectStatusIsPending(){
+        return repository.findBystatusIs(History.STATUS_PENDING);
+    }
 
     // 保存
     public boolean save(History history) {
