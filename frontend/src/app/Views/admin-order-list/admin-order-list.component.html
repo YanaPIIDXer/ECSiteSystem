@@ -1,5 +1,17 @@
 <div classs="container">
-    <div class="column" *ngFor="let item of list">
-        {{ item.id }}
+    <div class="row mt-5" *ngFor="let item of list">
+        <div class="col-6">
+            <div>商品名：{{ item.product.name }}</div>
+            <div>数量： {{ item.count }}</div>
+            <div>金額： {{ item.product.price * item.count | currency: 'JPY' }}</div>
+        </div>
+        <div class="col-6">
+            <div>
+                <button class="btn btn-primary">発送</button>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-danger">キャンセル</button>
+            </div>
+        </div>
     </div>
 </div>

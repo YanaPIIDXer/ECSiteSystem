@@ -21,6 +21,7 @@ export class AdminOrderListComponent implements OnInit {
       alert("注文リストの取得に失敗しました");
       return;
     }
-    this.list = res.json;
+    console.log(res);
+    this.list = res.json.list;
   }
 }
