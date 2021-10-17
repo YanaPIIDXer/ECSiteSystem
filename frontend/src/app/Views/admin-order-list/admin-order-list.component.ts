@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoryItem } from 'src/app/Models/history-item';
+import conn from '../../Modules/apiconnection';
 
 @Component({
   selector: 'admin-order-list',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminOrderListComponent implements OnInit {
 
-  constructor() { }
+  list: HistoryItem[]
 
-  ngOnInit(): void {
+  constructor() {
+    this.list = [];
   }
 
+  async ngOnInit(): Promise<void> {
+    const res = await conn.get("/admin/order");
+    if (res.status != 200) {
+      alert("注文リストの取得に失敗しました");
+      return;
+    }
+    this.list = res.json;
+  }
 }
