@@ -24,4 +24,48 @@ export class AdminOrderListComponent implements OnInit {
     console.log(res);
     this.list = res.json.list;
   }
+
+  async send(id: number): Promise<void> {
+    if (!confirm("発送しますか？")) { return; }
+    
+    var params = new URLSearchParams();
+    params.append("id", id.toString());
+    const res = await conn.post("/admin/order/send", params);
+    if (res.status != 200 || !res.json.result) {
+      alert("発送に失敗しました、");
+      return;
+    }
+    for (var i = 0; i < this.list.length; i++)
+    {
+      if (this.list[i].id == id)
+      {
+        this.list.splice(i, 1);
+        break;
+      }
+    }
+
+    alert("発送しました。");
+  }
+
+  async cancel(id: number): Promise<void> {
+    if (!confirm("キャンセルしますか？")) { return; }
+    
+    var params = new URLSearchParams();
+    params.append("id", id.toString());
+    const res = await conn.post("/admin/order/cancel", params);
+    if (res.status != 200 || !res.json.result) {
+      alert("キャンセルに失敗しました、");
+      return;
+    }
+    for (var i = 0; i < this.list.length; i++)
+    {
+      if (this.list[i].id == id)
+      {
+        this.list.splice(i, 1);
+        break;
+      }
+    }
+
+    alert("キャンセルしました。");
+  }
 }

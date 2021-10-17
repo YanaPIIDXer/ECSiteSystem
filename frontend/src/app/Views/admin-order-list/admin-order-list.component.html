@@ -7,10 +7,10 @@
         </div>
         <div class="col-6">
             <div>
-                <button class="btn btn-primary">発送</button>
+                <button class="btn btn-primary" (click)="send(item.id)">発送</button>
             </div>
             <div class="mt-3">
-                <button class="btn btn-danger">キャンセル</button>
+                <button class="btn btn-danger" (click)="cancel(item.id)">キャンセル</button>
             </div>
         </div>
     </div>
