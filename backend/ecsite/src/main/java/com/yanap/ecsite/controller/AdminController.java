@@ -50,9 +50,6 @@ public class AdminController {
     // キャンセル
     @PostMapping("/order/cancel")
     public SimpleResultResponse cancelOrder(@RequestParam("id") long id) {
-        History history = historyService.find(id);
-        if (history == null) { return new SimpleResultResponse(false); }
-
         return new SimpleResultResponse(historyService.cancel(id));
     }
 }
