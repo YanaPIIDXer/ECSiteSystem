@@ -3,6 +3,7 @@ package com.yanap.ecsite.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.Refund;
@@ -20,6 +21,13 @@ public class HistoryService {
     // 発注待ちを列挙
     public List<History> collectStatusIsPending(){
         return repository.findBystatusIs(History.STATUS_PENDING);
+    }
+
+    // IDから取得
+    public History find(long id) {
+        Optional<History> history = repository.findById(id);
+        if (history.isEmpty()) { return null; }
+        return history.get();
     }
 
     // 保存
