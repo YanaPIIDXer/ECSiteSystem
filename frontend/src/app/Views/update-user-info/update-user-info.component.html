@@ -1,1 +1,40 @@
-<p>update-user-info works!</p>
+<h1>ユーザ情報更新</h1>
+<hr />
+<div>
+<h2>ユーザ情報</h2>
+<form #loginForm="ngForm" novalidate>
+    <label class="form-label">名前</label>
+    <input type="text" name="name" class="form-control" [(ngModel)]="name" required #_name="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _name.errors?.required">名前を入力してください</div>
+    <label class="form-label">メールアドレス</label>
+    <input type="text" name="email" class="form-control" [(ngModel)]="email" required email #_email="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _email.errors?.required">メールアドレスを入力してください</div>
+    <div class="text-danger" *ngIf="loginForm.submitted && _email.errors?.email">メールアドレスの形式ではありません</div>
+    <label class="form-label">パスワード</label>
+    <input type="password" name="password" class="form-control" [(ngModel)]="password" required #_password="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _password.errors?.required">パスワードを入力してください</div>
+    <hr />
+    
+    <h2>連絡先情報</h2>
+    <label class="form-label">住所</label>
+    <input type="text" name="address" class="form-control" [(ngModel)]="address" required #_address="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _address.errors?.required">住所を入力してください</div>
+    <hr />
+    
+    <h2>クレジットカード情報</h2>
+    <p>※安全の為、本物のクレジットカード番号ではなく、テスト用に用意されたクレジットカードの番号を使用します。</p>
+    <p>カード番号は下記リストよりコピペしてください。</p>
+    <p class="text-danger">※決済システムがテスト環境の為、本物のカード番号を使用すると決済処理が弾かれます。</p>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>ブランド</th><th>カード番号</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dummyCards">
+                <td>{{ item.name }}</td><td>{{ item.number }}</td>
+            </tr>
+        </tbody>
+    </table>
+</form>
