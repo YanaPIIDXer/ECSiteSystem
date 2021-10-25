@@ -5,6 +5,7 @@ import { DummyCard } from '../../Models/dummy-card';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import { Router } from '@angular/router';
+import { LogInService } from 'src/app/Services/log-in.service';
 
 @Component({
   selector: 'update-user-info',
@@ -22,7 +23,7 @@ export class UpdateUserInfoComponent implements OnInit {
   cardElementOptions: StripeCardElementOptions
   @ViewChild("cardNumberElement") cardElement!: StripeCardNumberComponent
 
-  constructor(private stripeService: StripeService, private router: Router) {
+  constructor(private stripeService: StripeService, private router: Router, private logInService: LogInService) {
     this.name = "";
     this.email = "";
     this.password = "";
@@ -107,6 +108,7 @@ export class UpdateUserInfoComponent implements OnInit {
       return;
     }
     alert("更新しました");
+    this.logInService.logInAsUser(this.name);
     this.router.navigate(["/"]);
 }
 }
