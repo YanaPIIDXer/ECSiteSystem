@@ -21,6 +21,7 @@ import { AddProductComponent } from './Views/add-product/add-product.component';
 import { HistoryComponent } from './Views/history/history.component';
 import { AdminOrderListComponent } from './Views/admin-order-list/admin-order-list.component';
 import { UpdateUserInfoComponent } from './Views/update-user-info/update-user-info.component';
+import { ItemImageComponent } from './Components/item-image/item-image.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UpdateUserInfoComponent } from './Views/update-user-info/update-user-in
     AddProductComponent,
     HistoryComponent,
     AdminOrderListComponent,
-    UpdateUserInfoComponent
+    UpdateUserInfoComponent,
+    ItemImageComponent
   ],
   imports: [
     BrowserModule,
