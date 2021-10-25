@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartComponent } from './Views/cart/cart.component';
 import { AddProductComponent } from './Views/add-product/add-product.component';
 import { HistoryComponent } from './Views/history/history.component';
+import { AdminOrderListComponent } from './Views/admin-order-list/admin-order-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HistoryComponent } from './Views/history/history.component';
     ProductCardComponent,
     CartComponent,
     AddProductComponent,
-    HistoryComponent
+    HistoryComponent,
+    AdminOrderListComponent
   ],
   imports: [
     BrowserModule,
