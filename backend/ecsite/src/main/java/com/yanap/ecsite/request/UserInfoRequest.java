@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegisterRequest {
+public class UserInfoRequest {
     @NotBlank(message = "名前を入力してください")
     private String name;
 

@@ -9,7 +9,7 @@ import com.stripe.param.CustomerCreateParams;
 import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.entity.User;
-import com.yanap.ecsite.request.UserRegisterRequest;
+import com.yanap.ecsite.request.UserInfoRequest;
 import com.yanap.ecsite.response.SimpleResultResponse;
 import com.yanap.ecsite.response.UserHistoryResponse;
 import com.yanap.ecsite.response.UserInfoResponse;
@@ -43,7 +43,7 @@ public class UserController {
 
     // ユーザ新規登録
     @PostMapping("/register")
-    public UserRegisterResponse register(@Validated UserRegisterRequest request, BindingResult result) {
+    public UserRegisterResponse register(@Validated UserInfoRequest request, BindingResult result) {
         if (result.hasErrors()) {
             return new UserRegisterResponse(false, result.getAllErrors().get(0).getDefaultMessage());
         }
