@@ -20,7 +20,6 @@ export class UserRegisterComponent implements OnInit {
   name: string
   email: string
   password: string
-  confirmPassword: string
   address: string
   dummyCards: DummyCard[]
   cardElementOptions: StripeCardElementOptions
@@ -30,7 +29,6 @@ export class UserRegisterComponent implements OnInit {
     this.name = "";
     this.email = "";
     this.password = "";
-    this.confirmPassword = "";
     this.address = "";
     this.dummyCards =  [
       {name: "VISA1", number: "4111111111111111"},
