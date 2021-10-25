@@ -4,7 +4,7 @@
     <div *ngFor="let item of list" :key="item.id">
         <div class="row">
             <div class="col-3">
-                <img class="item_image" alt="..." [src]="item.product.imageUrl" />
+                <item-image [src]="item.product.imageUrl"></item-image>
             </div>
             <div class="col-5 mt-5">
                 <p>{{ item.product.name }}</p>
