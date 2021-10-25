@@ -13,6 +13,7 @@ export class ItemImageComponent implements OnInit {
     this.src = "";
     this.forCard = false;
   }
+  
   ngOnInit(): void {
     if (this.src == "") {
       this.src = "assets/noimage.jpg";
