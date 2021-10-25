@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import conn from '../../Modules/apiconnection';
 import { DummyCard } from '../../Models/dummy-card';
+import { StripeCardElementOptions } from '@stripe/stripe-js';
+import { StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 
 @Component({
   selector: 'update-user-info',
@@ -15,6 +18,8 @@ export class UpdateUserInfoComponent implements OnInit {
   cardNumber: string
   updateCardInfo: boolean
   dummyCards: DummyCard[]
+  cardElementOptions: StripeCardElementOptions
+  @ViewChild("cardNumberElement") cardElement!: StripeCardNumberComponent
 
   constructor() {
     this.name = "";
@@ -34,6 +39,29 @@ export class UpdateUserInfoComponent implements OnInit {
       {name: "JCB1", number: "3530111333300000"},
       {name: "JCB2", number: "3566002020360505"},
     ];
+    this.cardElementOptions = {
+      style: {
+        base: {
+          color: '#32325D',
+          fontWeight: 500,
+          fontFamily: 'Source Code Pro, Consolas, Menlo, monospace',
+          fontSize: '1.2em',
+          fontSmoothing: 'antialiased',
+          '::placeholder': {
+          color: '#CFD7DF'
+          },
+          ':-webkit-autofill': {
+            color: '#e39f48'
+          }
+        },
+        invalid: {
+          color: '#E25950',
+          '::placeholder': {
+          color: '#FFCCA5'
+          }
+        }
+      }
+    }
   }
 
   async ngOnInit(): Promise<void> {
