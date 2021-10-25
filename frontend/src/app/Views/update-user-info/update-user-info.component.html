@@ -2,7 +2,7 @@
 <hr />
 <div>
 <h2>ユーザ情報</h2>
-<form #loginForm="ngForm" novalidate>
+<form #loginForm="ngForm" novalidate (submit)="submit(loginForm)">
     <label class="form-label">名前</label>
     <input type="text" name="name" class="form-control" [(ngModel)]="name" required #_name="ngModel" />
     <div class="text-danger" *ngIf="loginForm.submitted && _name.errors?.required">名前を入力してください</div>

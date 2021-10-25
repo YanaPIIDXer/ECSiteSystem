@@ -4,6 +4,7 @@ import conn from '../../Modules/apiconnection';
 import { DummyCard } from '../../Models/dummy-card';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent, StripeService } from 'ngx-stripe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'update-user-info',
@@ -21,7 +22,7 @@ export class UpdateUserInfoComponent implements OnInit {
   cardElementOptions: StripeCardElementOptions
   @ViewChild("cardNumberElement") cardElement!: StripeCardNumberComponent
 
-  constructor() {
+  constructor(private stripeService: StripeService, private router: Router) {
     this.name = "";
     this.email = "";
     this.password = "";
@@ -72,4 +73,40 @@ export class UpdateUserInfoComponent implements OnInit {
     this.cardNumber = "XXXX-XXXX-XXXX-" + res.json.cardFinalNumber;
   }
 
+  submit(form: NgForm): void {
+    if (form.invalid) { return; }
+    if (!confirm("更新しますか？")) { return; }
+
+    if (this.updateCardInfo) {
+      this.stripeService.createToken(this.cardElement.element)
+                        .subscribe((result) => {
+                          if (result.error) {
+                            alert("カードの認証に失敗しました");
+                            return;
+                          }
+                          var token = result.token?.id!;
+                          this.send(token);
+                        });
+    }
+    else {
+      this.send("");
+    }
+  }
+
+  private async send(token: string): Promise<void> {
+    var params = new URLSearchParams();
+    params.append("name", this.name);
+    params.append("email", this.email);
+    params.append("password", this.password);
+    params.append("address", this.address);
+    params.append("token", token);
+    console.log(token);
+    const res = await conn.post("/user/update", params);
+    if (res.status != 200 || !res.json.result) {
+      alert("更新に失敗しました");
+      return;
+    }
+    alert("更新しました");
+    this.router.navigate(["/"]);
+}
 }
