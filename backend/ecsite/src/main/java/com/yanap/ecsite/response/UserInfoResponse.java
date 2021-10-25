@@ -14,9 +14,6 @@ public class UserInfoResponse {
     private String email;
 
     @Getter
-    private String password;
-
-    @Getter
     private String address;
 
     @Getter

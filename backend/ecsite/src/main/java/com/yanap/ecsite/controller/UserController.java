@@ -114,6 +114,6 @@ public class UserController {
         } catch (Exception e) {
             cardFinalNumber = "Error";
         }
-        return new UserInfoResponse(user.getName(), user.getEmail(), user.getPassword(), user.getAddress(), cardFinalNumber);
+        return new UserInfoResponse(user.getName(), user.getEmail(), user.getAddress(), cardFinalNumber);
     }
 }
