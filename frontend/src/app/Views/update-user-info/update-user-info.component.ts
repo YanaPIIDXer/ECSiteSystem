@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import conn from '../../Modules/apiconnection';
-
-// HACK:新規登録ページからのコピペ
-//      Modelsに切り出す
-interface DummyCard {
-  name: string
-  number: string
-}
+import { DummyCard } from '../../Models/dummy-card';
 
 @Component({
   selector: 'update-user-info',

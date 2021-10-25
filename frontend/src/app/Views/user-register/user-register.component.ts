@@ -4,11 +4,7 @@ import { Router } from '@angular/router';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import conn from '../../Modules/apiconnection';
-
-interface DummyCard {
-  name: string
-  number: string
-}
+import { DummyCard } from '../../Models/dummy-card';
 
 @Component({
   selector: 'user-register',
