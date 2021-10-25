@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
+import com.stripe.model.Source;
 import com.stripe.param.CustomerCreateParams;
 import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.entity.History;
@@ -11,6 +12,7 @@ import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.request.UserRegisterRequest;
 import com.yanap.ecsite.response.SimpleResultResponse;
 import com.yanap.ecsite.response.UserHistoryResponse;
+import com.yanap.ecsite.response.UserInfoResponse;
 import com.yanap.ecsite.response.UserRegisterResponse;
 import com.yanap.ecsite.service.HistoryService;
 import com.yanap.ecsite.service.UserService;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 // ユーザコントローラ
 @RestController
@@ -96,5 +99,21 @@ public class UserController {
         authUser.getUser().setHistories(tmp.getHistories());
 
         return new SimpleResultResponse(true);
+    }
+
+    // ユーザ情報取得
+    // ユーザ情報変更ページにアクセスした時に叩く
+    @RequestMapping("/userinfo")
+    public UserInfoResponse userInfo(@AuthenticationPrincipal AuthUser authUser) {
+        User user = authUser.getUser();
+        String cardFinalNumber = "";
+        try {
+            Customer stripeCustomer = Customer.retrieve(user.getStripeId());
+            Source source = Source.retrieve(stripeCustomer.getDefaultSource());
+            cardFinalNumber = source.getCard().getLast4();
+        } catch (Exception e) {
+            cardFinalNumber = "Error";
+        }
+        return new UserInfoResponse(user.getName(), user.getEmail(), user.getPassword(), user.getAddress(), cardFinalNumber);
     }
 }
