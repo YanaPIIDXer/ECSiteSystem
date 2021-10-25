@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import conn from '../../Modules/apiconnection';
 
 @Component({
   selector: 'update-user-info',
@@ -9,7 +10,9 @@ export class UpdateUserInfoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const res = await conn.get("/user/info");
+    console.log(res);
   }
 
 }
