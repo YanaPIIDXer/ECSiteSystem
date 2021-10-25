@@ -1,6 +1,8 @@
 package com.yanap.ecsite.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.Card;
@@ -112,9 +114,46 @@ public class UserController {
             // 参考：https://stripe.com/docs/api/cards/retrieve
             Card card = (Card) customer.getSources().retrieve(customer.getDefaultSource());
             cardFinalNumber = card.getLast4();
-        } catch (Exception e) {
+        } catch (StripeException e) {
             cardFinalNumber = e.getMessage();
         }
         return new UserInfoResponse(user.getName(), user.getEmail(), user.getAddress(), cardFinalNumber);
+    }
+
+    // ユーザ情報更新
+    @PostMapping("/update")
+    public UserRegisterResponse updateInfo(@Validated UserInfoRequest request, BindingResult result, @AuthenticationPrincipal AuthUser authUser) {
+        if (result.hasErrors()) {
+            return new UserRegisterResponse(false, result.getAllErrors().get(0).getDefaultMessage());
+        }
+
+        User user = authUser.getUser();
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setAddress(request.getAddress());
+
+        String token = request.getToken();
+        if (token != "") {
+            try {
+                Customer customer = Customer.retrieve(user.getStripeId());
+                Map<String, Object> createMap = new HashMap<String, Object>();
+                createMap.put("source", token);
+                Card card = (Card) customer.getSources().create(createMap);
+
+                Map<String, Object> updateMap = new HashMap<String, Object>();
+                updateMap.put("default_source", card.getId());
+                customer.update(updateMap);
+            } catch (StripeException e) {
+                System.out.println(e.getMessage());
+                return new UserRegisterResponse(false, "カード情報の登録に失敗しました");    
+            }
+        }
+
+        if(!userService.save(user)) {
+            return new UserRegisterResponse(false, "そのメールアドレスは既に使用されています");
+        }
+
+        return new UserRegisterResponse(true, "");
     }
 }
