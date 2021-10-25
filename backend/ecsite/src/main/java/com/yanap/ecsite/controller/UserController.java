@@ -3,8 +3,8 @@ package com.yanap.ecsite.controller;
 import java.util.List;
 
 import com.stripe.exception.StripeException;
+import com.stripe.model.Card;
 import com.stripe.model.Customer;
-import com.stripe.model.Source;
 import com.stripe.param.CustomerCreateParams;
 import com.yanap.ecsite.auth.AuthUser;
 import com.yanap.ecsite.entity.History;
@@ -108,11 +108,11 @@ public class UserController {
         User user = authUser.getUser();
         String cardFinalNumber = "";
         try {
-            Customer stripeCustomer = Customer.retrieve(user.getStripeId());
-            Source source = Source.retrieve(stripeCustomer.getDefaultSource());
-            cardFinalNumber = source.getCard().getLast4();
+            Customer customer = Customer.retrieve(user.getStripeId());
+            Card card = (Card) customer.getSources().retrieve(customer.getDefaultSource());
+            cardFinalNumber = card.getLast4();
         } catch (Exception e) {
-            cardFinalNumber = "Error";
+            cardFinalNumber = e.getMessage();
         }
         return new UserInfoResponse(user.getName(), user.getEmail(), user.getAddress(), cardFinalNumber);
     }
