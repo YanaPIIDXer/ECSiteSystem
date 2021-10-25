@@ -109,6 +109,7 @@ public class UserController {
         String cardFinalNumber = "";
         try {
             Customer customer = Customer.retrieve(user.getStripeId());
+            // 参考：https://stripe.com/docs/api/cards/retrieve
             Card card = (Card) customer.getSources().retrieve(customer.getDefaultSource());
             cardFinalNumber = card.getLast4();
         } catch (Exception e) {
