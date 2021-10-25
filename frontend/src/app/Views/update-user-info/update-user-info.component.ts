@@ -18,6 +18,8 @@ export class UpdateUserInfoComponent implements OnInit {
   email: string
   password: string
   address: string
+  cardNumber: string
+  updateCardInfo: boolean
   dummyCards: DummyCard[]
 
   constructor() {
@@ -25,6 +27,8 @@ export class UpdateUserInfoComponent implements OnInit {
     this.email = "";
     this.password = "";
     this.address = "";
+    this.cardNumber = "XXXX-XXXX-XXXX-";
+    this.updateCardInfo = false;
     this.dummyCards =  [
       {name: "VISA1", number: "4111111111111111"},
       {name: "VISA2", number: "4242424242424242"},
@@ -43,6 +47,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.name = res.json.name;
     this.email = res.json.email;
     this.address = res.json.address;
+    this.cardNumber = "XXXX-XXXX-XXXX-" + res.json.cardFinalNumber;
   }
 
 }
