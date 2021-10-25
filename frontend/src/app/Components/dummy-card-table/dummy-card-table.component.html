@@ -1,0 +1,15 @@
+<p>※安全の為、本物のクレジットカード番号ではなく、テスト用に用意されたクレジットカードの番号を使用します。</p>
+<p>カード番号は下記リストよりコピペしてください。</p>
+<p class="text-danger">※決済システムがテスト環境の為、本物のカード番号を使用すると決済処理が弾かれます。</p>
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <th>ブランド</th><th>カード番号</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dummyCards">
+            <td>{{ item.name }}</td><td>{{ item.number }}</td>
+        </tr>
+    </tbody>
+</table>    

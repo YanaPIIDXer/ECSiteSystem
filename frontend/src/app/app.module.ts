@@ -22,6 +22,7 @@ import { HistoryComponent } from './Views/history/history.component';
 import { AdminOrderListComponent } from './Views/admin-order-list/admin-order-list.component';
 import { UpdateUserInfoComponent } from './Views/update-user-info/update-user-info.component';
 import { ItemImageComponent } from './Components/item-image/item-image.component';
+import { DummyCardTableComponent } from './Components/dummy-card-table/dummy-card-table.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ItemImageComponent } from './Components/item-image/item-image.component
     HistoryComponent,
     AdminOrderListComponent,
     UpdateUserInfoComponent,
-    ItemImageComponent
+    ItemImageComponent,
+    DummyCardTableComponent
   ],
   imports: [
     BrowserModule,
