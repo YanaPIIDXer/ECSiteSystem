@@ -103,7 +103,7 @@ public class UserController {
 
     // ユーザ情報取得
     // ユーザ情報変更ページにアクセスした時に叩く
-    @RequestMapping("/userinfo")
+    @RequestMapping("/info")
     public UserInfoResponse userInfo(@AuthenticationPrincipal AuthUser authUser) {
         User user = authUser.getUser();
         String cardFinalNumber = "";
