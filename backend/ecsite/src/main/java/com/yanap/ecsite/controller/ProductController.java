@@ -2,6 +2,7 @@ package com.yanap.ecsite.controller;
 
 import java.util.List;
 
+import com.yanap.ecsite.config.ApplicationConfig;
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.request.AddProductRequest;
 import com.yanap.ecsite.response.AddProductResponse;
@@ -33,7 +34,11 @@ public class ProductController {
         }
         List<Product> list = productService.searchByKeywordWithPagenation(keyword, page);
         int count = productService.countByKeyword(keyword);
-        return new ProductListResponse(list, count);
+        int maxPage = count / ApplicationConfig.PRODUCT_COUNT_BY_PAGE;
+        if ((count % ApplicationConfig.PRODUCT_COUNT_BY_PAGE) > 0) {
+            maxPage++;
+        }
+        return new ProductListResponse(list, count, page, maxPage, ApplicationConfig.PRODUCT_COUNT_BY_PAGE);
     }
     
     // 商品登録

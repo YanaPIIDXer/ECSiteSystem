@@ -15,4 +15,13 @@ public class ProductListResponse {
 
     @Getter
     private int count;
+
+    @Getter
+    private int currentPage;
+
+    @Getter
+    private int maxPage;
+
+    @Getter
+    private int countByPage;
 }
