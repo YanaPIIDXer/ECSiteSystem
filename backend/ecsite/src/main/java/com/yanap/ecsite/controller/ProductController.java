@@ -5,6 +5,7 @@ import java.util.List;
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.request.AddProductRequest;
 import com.yanap.ecsite.response.AddProductResponse;
+import com.yanap.ecsite.response.ProductListResponse;
 import com.yanap.ecsite.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,17 @@ public class ProductController {
     private ProductService productService;
 
     // 商品リスト取得
-    // TODO:ページネーションの実装
     @RequestMapping("/product/list")
-    public List<Product> list(@RequestParam(name = "keyword", required = false) String keyword, @RequestParam(name = "page", required = false) Integer page) {
+    public ProductListResponse list(@RequestParam(name = "keyword", required = false) String keyword, @RequestParam(name = "page", required = false) Integer page) {
         if (keyword == null) {
             keyword = "";
         }
         if (page == null) {
             page = 1;
         }
-        return productService.searchByKeywordWithPagenation(keyword, page);
+        List<Product> list = productService.searchByKeywordWithPagenation(keyword, page);
+        int count = productService.countByKeyword(keyword);
+        return new ProductListResponse(list, count);
     }
     
     // 商品登録

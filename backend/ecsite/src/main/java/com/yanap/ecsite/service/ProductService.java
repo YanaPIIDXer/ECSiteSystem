@@ -33,4 +33,9 @@ public class ProductService {
     public List<Product> searchByKeywordWithPagenation(String keyword, int page) {
         return repository.searchByKeywordWithPagenation(keyword, (page - 1) * ApplicationConfig.PRODUCT_COUNT_BY_PAGE, ApplicationConfig.PRODUCT_COUNT_BY_PAGE);
     }
+
+    // キーワードに引っかかる件数を取得
+    public int countByKeyword(String keyword) {
+        return repository.countByKeyword(keyword);
+    }
 }

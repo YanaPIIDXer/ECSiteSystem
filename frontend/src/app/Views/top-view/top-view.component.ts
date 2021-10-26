@@ -29,6 +29,6 @@ export class TopViewComponent implements OnInit {
       this.list = [];
       return;
     }
-    this.list = res.json;
+    this.list = res.json.list;
   }
 }
