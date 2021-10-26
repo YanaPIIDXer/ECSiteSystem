@@ -11,10 +11,14 @@ export class TopViewComponent implements OnInit {
 
   list: Product[]
   keyword: String
+  showHitCount: boolean
+  hitCount: number
 
   constructor() {
     this.list = [];
     this.keyword = "";
+    this.showHitCount = false;
+    this.hitCount = 0;
   }
 
   ngOnInit(): void {
@@ -30,5 +34,7 @@ export class TopViewComponent implements OnInit {
       return;
     }
     this.list = res.json.list;
+    this.showHitCount = this.keyword != "";
+    this.hitCount = res.json.count;
   }
 }
