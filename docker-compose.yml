@@ -17,8 +17,8 @@ services:
         platform: linux/x86_64
         environment:
             MYSQL_ROOT_PASSWORD: password
-            MYSQL_USER: develop
-            MYSQL_PASSWORD: develop
+            MYSQL_USER: development
+            MYSQL_PASSWORD: development
         ports:
             - 3306:3306
         volumes:
