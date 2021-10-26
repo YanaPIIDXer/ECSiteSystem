@@ -23,6 +23,18 @@ public class UserHistoryResponse {
     @Getter
     private List<Info> list = new ArrayList<Info>();
 
+    @Getter
+    private int maxPage;
+
+    @Getter
+    private int countByPage;
+
+    // コンストラクタ
+    public UserHistoryResponse(int maxPage, int countByPage) {
+        this.maxPage = maxPage;
+        this.countByPage = countByPage;
+    }
+
     // 追加
     public void add(long id, Product product, int count, String dateTime, int status) {
         Info info = new Info(id, product, count, dateTime, status);

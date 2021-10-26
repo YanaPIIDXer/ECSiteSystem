@@ -10,6 +10,7 @@ import com.stripe.model.Card;
 import com.stripe.model.Customer;
 import com.stripe.param.CustomerCreateParams;
 import com.yanap.ecsite.auth.AuthUser;
+import com.yanap.ecsite.config.ApplicationConfig;
 import com.yanap.ecsite.entity.History;
 import com.yanap.ecsite.entity.User;
 import com.yanap.ecsite.request.UserInfoRequest;
@@ -79,11 +80,21 @@ public class UserController {
 
     // 購入履歴
     @RequestMapping("/history")
-    public UserHistoryResponse history(@AuthenticationPrincipal AuthUser authUser) {
-        UserHistoryResponse response = new UserHistoryResponse();
+    public UserHistoryResponse history(@RequestParam(name = "page", required = false) Integer page, @AuthenticationPrincipal AuthUser authUser) {
+        if (page == null) {
+            page = 1;
+        }
+        
         User user = authUser.getUser();
         List<History> histories = user.getHistories();
+        int maxPage = histories.size() / ApplicationConfig.HISTORY_COUNT_BY_PAGE;
+        if ((histories.size() % ApplicationConfig.HISTORY_COUNT_BY_PAGE) > 0) {
+            maxPage++;
+        }
+
+        UserHistoryResponse response = new UserHistoryResponse(maxPage, ApplicationConfig.HISTORY_COUNT_BY_PAGE);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY/mm/dd HH:mm:ss");
+        histories = histories.subList((page - 1) * ApplicationConfig.HISTORY_COUNT_BY_PAGE, page * ApplicationConfig.HISTORY_COUNT_BY_PAGE);
         for (History history : histories) {
             if (history.getStatus() != History.STATUS_CANCELED) {
                 response.add(history.getId(), history.getProduct(), history.getCount(), dateTimeFormatter.format(history.getDateTime()), history.getStatus());

@@ -25,7 +25,7 @@ public class AdminController {
     public UserHistoryResponse orderList()
     {
         List<History> list = historyService.collectStatusIsPending();
-        UserHistoryResponse response = new UserHistoryResponse();
+        UserHistoryResponse response = new UserHistoryResponse(0, 0);
         for (History item : list)
         {
             if (item.getStatus() == History.STATUS_PENDING)

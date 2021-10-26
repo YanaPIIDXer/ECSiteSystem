@@ -15,6 +15,9 @@ public class ApplicationConfig implements WebMvcConfigurer {
     // １ページ毎の商品表示数
     public static final int PRODUCT_COUNT_BY_PAGE = 20;
 
+    // 1ページ事の購入履歴表示数
+    public static final int HISTORY_COUNT_BY_PAGE = 5;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
