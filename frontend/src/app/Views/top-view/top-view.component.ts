@@ -10,14 +10,25 @@ import { Product } from '../../Models/product';
 export class TopViewComponent implements OnInit {
 
   list: Product[]
+  keyword: String
 
   constructor() {
     this.list = [];
+    this.keyword = "";
   }
 
-  async ngOnInit(): Promise<void> {
-    const res = await conn.get("/product/list");
-    if (res.status != 200) { return; }
+  ngOnInit(): void {
+    this.search();
+  }
+
+  async search(): Promise<void> {
+    const res = await conn.get("/product/list?keyword=" + this.keyword);
+    if (res.status != 200) {
+      console.error("Search Failed.");
+      console.log(res);
+      this.list = [];
+      return;
+    }
     this.list = res.json;
   }
 }
