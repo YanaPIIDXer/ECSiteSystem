@@ -3,7 +3,7 @@
         <item-image [src]="product?.imageUrl!" [forCard]="true"></item-image>
         <div class="card-body">
             <h5 class="card-title">{{ product?.name }}</h5>
-            <p class="card-text">{{ product?.description }}</p>
+            <p class="card-text pre-line">{{ product?.description }}</p>
         </div>
         <div class="card-footer">
             <div>{{ product?.price | currency: 'JPY' }}</div>
