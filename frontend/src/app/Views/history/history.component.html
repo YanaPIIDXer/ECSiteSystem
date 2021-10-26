@@ -8,9 +8,9 @@
             </div>
             <div class="col-5 mt-5">
                 <p>{{ item.product.name }}</p>
-                <p>単価：{{ item.product.price }}</p>
+                <p>単価：{{ item.product.price | currency: 'JPY' }}</p>
                 <p>数量：{{ item.count }}</p>
-                <p>合計価格：{{ item.product.price * item.count }}</p>
+                <p>合計価格：{{ item.product.price * item.count | currency: 'JPY' }}</p>
             </div>
             <div class="col-2">
                 <div [ngSwitch]="item.status">
