@@ -38,7 +38,7 @@ public class ProductController {
         if ((count % ApplicationConfig.PRODUCT_COUNT_BY_PAGE) > 0) {
             maxPage++;
         }
-        return new ProductListResponse(list, count, page, maxPage, ApplicationConfig.PRODUCT_COUNT_BY_PAGE);
+        return new ProductListResponse(list, count, maxPage, ApplicationConfig.PRODUCT_COUNT_BY_PAGE);
     }
     
     // 商品登録

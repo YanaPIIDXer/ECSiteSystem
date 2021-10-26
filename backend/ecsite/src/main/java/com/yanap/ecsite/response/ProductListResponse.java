@@ -17,9 +17,6 @@ public class ProductListResponse {
     private int count;
 
     @Getter
-    private int currentPage;
-
-    @Getter
     private int maxPage;
 
     @Getter
