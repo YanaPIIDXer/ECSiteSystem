@@ -1,6 +1,6 @@
-import { resolveSanitizationFn } from '@angular/compiler/src/render3/view/template';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { PagenationComponent } from 'src/app/Components/pagenation/pagenation.component';
 import { HistoryItem } from 'src/app/Models/history-item';
 import conn from '../../Modules/apiconnection';
 
@@ -12,9 +12,12 @@ import conn from '../../Modules/apiconnection';
 export class HistoryComponent implements OnInit {
 
   list: HistoryItem[]
-  
+  currentPage: number
+  @ViewChild(PagenationComponent) pagenation!: PagenationComponent
+
   constructor(private router: Router) {
     this.list = [];
+    this.currentPage = 1;
   }
 
   ngOnInit(): void {
@@ -22,12 +25,14 @@ export class HistoryComponent implements OnInit {
   }
 
   private async updateList(): Promise<void> {
-    const res = await conn.get("/user/history");
+    const res = await conn.get("/user/history?page=" + this.currentPage);
     if (res.status != 200) {
       alert("購入履歴の取得に失敗しました");
       return;
     }
     this.list = res.json.list;
+    this.pagenation.setup(this.currentPage, res.json.maxPage);
+    document.scrollingElement!.scrollTop = 0;
   }
 
   async cancel(id: number): Promise<void> {
@@ -43,4 +48,8 @@ export class HistoryComponent implements OnInit {
     this.updateList();
   }
 
+  changePage(page: number): void {
+    this.currentPage = page;
+    this.updateList();
+  }
 }
