@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "products")
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
