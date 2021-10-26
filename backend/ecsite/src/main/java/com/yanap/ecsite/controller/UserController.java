@@ -94,7 +94,12 @@ public class UserController {
 
         UserHistoryResponse response = new UserHistoryResponse(maxPage, ApplicationConfig.HISTORY_COUNT_BY_PAGE);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY/mm/dd HH:mm:ss");
-        histories = histories.subList((page - 1) * ApplicationConfig.HISTORY_COUNT_BY_PAGE, page * ApplicationConfig.HISTORY_COUNT_BY_PAGE);
+        int fromIndex = (page - 1) * ApplicationConfig.HISTORY_COUNT_BY_PAGE;
+        int toIndex = page * ApplicationConfig.HISTORY_COUNT_BY_PAGE;
+        if (toIndex >= histories.size()) {
+            toIndex = histories.size() - 1;
+        }
+        histories = histories.subList(fromIndex, toIndex);
         for (History history : histories) {
             if (history.getStatus() != History.STATUS_CANCELED) {
                 response.add(history.getId(), history.getProduct(), history.getCount(), dateTimeFormatter.format(history.getDateTime()), history.getStatus());
