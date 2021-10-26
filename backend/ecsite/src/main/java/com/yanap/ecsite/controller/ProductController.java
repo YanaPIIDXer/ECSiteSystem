@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // 商品関係コントローラ
@@ -21,10 +22,13 @@ public class ProductController {
     private ProductService productService;
 
     // 商品リスト取得
-    // HACK:ページネーションが考慮されていない
+    // TODO:ページネーションの実装
     @RequestMapping("/product/list")
-    public List<Product> list() {
-        return productService.getAll();
+    public List<Product> list(@RequestParam(name = "keyword", required = false) String keyword) {
+        if (keyword == null) {
+            keyword = "";
+        }
+        return productService.searchByKeyword(keyword);
     }
     
     // 商品登録

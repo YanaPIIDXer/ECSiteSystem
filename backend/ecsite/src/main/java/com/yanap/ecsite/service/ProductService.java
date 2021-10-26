@@ -26,8 +26,8 @@ public class ProductService {
         return repository.getById(id);
     }
     
-    // HACK:ページネーションを考える
-    public List<Product> getAll() {
-        return repository.findAll();
+    // TODO:ページネーションを考える
+    public List<Product> searchByKeyword(String keyword) {
+        return repository.searchByKeyword(keyword);
     }
 }
