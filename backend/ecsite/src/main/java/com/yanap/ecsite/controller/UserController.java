@@ -1,5 +1,6 @@
 package com.yanap.ecsite.controller;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,9 +83,10 @@ public class UserController {
         UserHistoryResponse response = new UserHistoryResponse();
         User user = authUser.getUser();
         List<History> histories = user.getHistories();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY/mm/dd HH:mm:ss");
         for (History history : histories) {
             if (history.getStatus() != History.STATUS_CANCELED) {
-                response.add(history.getId(), history.getProduct(), history.getCount(), history.getDateTime().toString(), history.getStatus());
+                response.add(history.getId(), history.getProduct(), history.getCount(), dateTimeFormatter.format(history.getDateTime()), history.getStatus());
             }
         }
         return response;
