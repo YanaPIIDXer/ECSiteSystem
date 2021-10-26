@@ -30,7 +30,7 @@ public class AdminController {
         {
             if (item.getStatus() == History.STATUS_PENDING)
             {
-                response.add(item.getId(), item.getProduct(), item.getCount(), item.getStatus());
+                response.add(item.getId(), item.getProduct(), item.getCount(), item.getDateTime().toString(), item.getStatus());
             }
         }
 

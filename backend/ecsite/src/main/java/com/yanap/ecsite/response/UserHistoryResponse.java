@@ -16,6 +16,7 @@ public class UserHistoryResponse {
         private long id;
         private Product product;
         private int count;
+        private String dateTime;
         private int status;
     }
 
@@ -23,8 +24,8 @@ public class UserHistoryResponse {
     private List<Info> list = new ArrayList<Info>();
 
     // 追加
-    public void add(long id, Product product, int count, int status) {
-        Info info = new Info(id, product, count, status);
+    public void add(long id, Product product, int count, String dateTime, int status) {
+        Info info = new Info(id, product, count, dateTime, status);
         list.add(info);
     }
 }
