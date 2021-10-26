@@ -94,35 +94,30 @@ public class CartController {
         User user = authUser.getUser();
         String stripeId = user.getStripeId();
         
-        int amount = 0;
         for (long id : cart.keySet()) {
             Product product = productService.get(id);
-            amount += product.getPrice() * cart.get(id);
-        }
-        
-        String chargeId = "";
-        Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", amount);
-        chargeMap.put("description", "ECサイト ポートフォリオ");
-        chargeMap.put("currency", "jpy");
-        chargeMap.put("customer", stripeId);
-        try {
-            Charge charge = Charge.create(chargeMap);
-            chargeId = charge.getId();
-        } catch(StripeException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            return new SimpleResultResponse(false);
-        }
+            String chargeId = "";
+            int status = History.STATUS_PENDING;
+            Map<String, Object> chargeMap = new HashMap<String, Object>();
+            chargeMap.put("amount", product.getPrice() * cart.get(id));
+            chargeMap.put("description", "ECサイト ポートフォリオ");
+            chargeMap.put("currency", "jpy");
+            chargeMap.put("customer", stripeId);
+            try {
+                Charge charge = Charge.create(chargeMap);
+                chargeId = charge.getId();
+            } catch(StripeException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+                status = History.STATUS_ERROR;
+            }
 
-        for (long id : cart.keySet()) {
-            Product product = productService.get(id);
             History history = new History();
             history.setProduct(product);
             history.setUser(user);
             history.setChargeId(chargeId);
             history.setCount(cart.get(id));
-            history.setStatus(History.STATUS_PENDING);
+            history.setStatus(status);
             history.setDateTime(LocalDateTime.now());
             user.getHistories().add(history);
             historyService.save(history);

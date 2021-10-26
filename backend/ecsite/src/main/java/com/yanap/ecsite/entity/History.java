@@ -22,6 +22,7 @@ public class History {
     public static final int STATUS_PENDING = 0;
     public static final int STATUS_SHIPPED = 1;
     public static final int STATUS_CANCELED = 2;
+    public static final int STATUS_ERROR = 3;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
