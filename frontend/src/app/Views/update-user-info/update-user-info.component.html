@@ -1,0 +1,39 @@
+<h1>ユーザ情報更新</h1>
+<hr />
+<div>
+<h2>ユーザ情報</h2>
+<form #loginForm="ngForm" novalidate (submit)="submit(loginForm)">
+    <label class="form-label">名前</label>
+    <input type="text" name="name" class="form-control" [(ngModel)]="name" required #_name="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _name.errors?.required">名前を入力してください</div>
+    <label class="form-label">メールアドレス</label>
+    <input type="text" name="email" class="form-control" [(ngModel)]="email" required email #_email="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _email.errors?.required">メールアドレスを入力してください</div>
+    <div class="text-danger" *ngIf="loginForm.submitted && _email.errors?.email">メールアドレスの形式ではありません</div>
+    <label class="form-label">パスワード</label>
+    <input type="password" name="password" class="form-control" [(ngModel)]="password" required #_password="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _password.errors?.required">パスワードを入力してください</div>
+    <hr />
+    
+    <h2>連絡先情報</h2>
+    <label class="form-label">住所</label>
+    <input type="text" name="address" class="form-control" [(ngModel)]="address" required #_address="ngModel" />
+    <div class="text-danger" *ngIf="loginForm.submitted && _address.errors?.required">住所を入力してください</div>
+    <hr />
+
+    <h2>クレジットカード情報</h2>
+    <div *ngIf="!updateCardInfo; else cardContent">
+        <label class="form-label">カード番号</label>
+        <input type="text" class="form-control" readonly [value]="cardNumber" />
+        <input type="button" (click)="updateCardInfo = true" value="カード情報を更新する" class="form-control btn btn-danger" />
+    </div>
+    <ng-template #cardContent>
+        <dummy-card-table></dummy-card-table>
+        <ngx-stripe-card-group>
+            <label>カード番号</label><ngx-stripe-card-number [options]="cardElementOptions" #cardNumberElement></ngx-stripe-card-number>
+            <label>有効期限</label><ngx-stripe-card-expiry [options]="cardElementOptions"></ngx-stripe-card-expiry>
+            <label>CVC</label><ngx-stripe-card-cvc [options]="cardElementOptions"></ngx-stripe-card-cvc>
+        </ngx-stripe-card-group>
+    </ng-template>
+    <input type="submit" class="btn btn-primary" value="登録" />    
+</form>

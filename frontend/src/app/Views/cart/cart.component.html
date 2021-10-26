@@ -1,0 +1,32 @@
+<h1>カート</h1>
+<hr />
+<div class="container mt-5">
+    <div *ngFor="let item of list">
+        <div class="row">
+            <div class="col-3">
+                <item-image [src]="item.imageUrl"></item-image>
+            </div>
+            <div class="col-5 mt-5">
+                <p>{{ item.name }}</p>
+                <p>単価：{{ item.price | currency: 'JPY' }}</p>
+                <p>小計価格：{{ item.price * item.count | currency: 'JPY' }}</p>
+            </div>
+            <div class="col-4 mt-5">
+                <label class="form-label">数量</label>
+                <input type="number" [(ngModel)]="item.changedCount" class="form-control" />
+                <button class="btn btn-primary" (click)="change(item.id, item.changedCount)">変更</button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            合計価格：{{ totalPrice | currency: 'JPY' }}
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" [class.disabled]="totalPrice <= 0" on-click="buy()">購入する</button>
+        </div>
+    </div>
+</div>

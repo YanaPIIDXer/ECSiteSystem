@@ -1,0 +1,15 @@
+<div>
+    <div class="card">
+        <item-image [src]="product?.imageUrl!" [forCard]="true"></item-image>
+        <div class="card-body">
+            <h5 class="card-title">{{ product?.name }}</h5>
+            <p class="card-text pre-line">{{ product?.description }}</p>
+        </div>
+        <div class="card-footer">
+            <div>{{ product?.price | currency: 'JPY' }}</div>
+            <hr />
+            <label>数量</label><input type="number" [(ngModel)]="count" />
+            <button class="btn btn-primary" on-click="add()">カートに入れる</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="navbar-nav">
+    <span class="ml-5">
+        <span class="nav-item nav-link">{{ logInService.getUserName() }} 様</span>
+    </span>
+    <a routerLink="/cart" class="nav-item nav-link">カートへ</a>
+    <a routerLink="/history" class="nav-item nav-link">購入履歴</a>
+    <a routerLink="/update" class="nav-item nav-link">ユーザ情報更新</a>
+    <span class="nav-item nav-link logout" on-click="logout()">ログアウト</span>
+</div>

@@ -1,0 +1,36 @@
+<h1>購入履歴</h1>
+<hr />
+<div class="container mt-5">
+    <div *ngFor="let item of list" :key="item.id">
+        <div class="row mb-5">
+            <div class="col-3">
+                <item-image [src]="item.product.imageUrl"></item-image>
+            </div>
+            <div class="col-5">
+                <p>{{ item.product.name }}</p>
+                <p>単価：{{ item.product.price | currency: 'JPY' }}</p>
+                <p>数量：{{ item.count }}</p>
+                <p>合計価格：{{ item.product.price * item.count | currency: 'JPY' }}</p>
+                <p>購入日時：{{ item.dateTime }}</p>
+            </div>
+            <div class="col-2">
+                <div [ngSwitch]="item.status">
+                    <span *ngSwitchCase="0">                        
+                        <button class="btn btn-danger" (click)="cancel(item.id)">キャンセル</button>
+                    </span>
+                    <span *ngSwitchCase="1">
+                        発送済み
+                    </span>
+                    <span *ngSwitchCase="2" class="text-danger">
+                        キャンセル
+                    </span>
+                    <span *ngSwitchCase="3" class="text-danger">
+                        決済エラー
+                    </span>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <pagenation (onClick)="changePage($event)"></pagenation>
+</div>
