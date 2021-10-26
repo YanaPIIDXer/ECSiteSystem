@@ -24,11 +24,14 @@ public class ProductController {
     // 商品リスト取得
     // TODO:ページネーションの実装
     @RequestMapping("/product/list")
-    public List<Product> list(@RequestParam(name = "keyword", required = false) String keyword) {
+    public List<Product> list(@RequestParam(name = "keyword", required = false) String keyword, @RequestParam(name = "page", required = false) Integer page) {
         if (keyword == null) {
             keyword = "";
         }
-        return productService.searchByKeyword(keyword);
+        if (page == null) {
+            page = 1;
+        }
+        return productService.searchByKeywordWithPagenation(keyword, page);
     }
     
     // 商品登録

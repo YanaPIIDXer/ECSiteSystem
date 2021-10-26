@@ -12,6 +12,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class ApplicationConfig implements WebMvcConfigurer {
+    // １ページ毎の商品表示数
+    public static final int PRODUCT_COUNT_BY_PAGE = 20;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
