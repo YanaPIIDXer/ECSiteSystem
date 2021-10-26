@@ -23,6 +23,7 @@ import { AdminOrderListComponent } from './Views/admin-order-list/admin-order-li
 import { UpdateUserInfoComponent } from './Views/update-user-info/update-user-info.component';
 import { ItemImageComponent } from './Components/item-image/item-image.component';
 import { DummyCardTableComponent } from './Components/dummy-card-table/dummy-card-table.component';
+import { PagenationComponent } from './Components/pagenation/pagenation.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DummyCardTableComponent } from './Components/dummy-card-table/dummy-car
     AdminOrderListComponent,
     UpdateUserInfoComponent,
     ItemImageComponent,
-    DummyCardTableComponent
+    DummyCardTableComponent,
+    PagenationComponent
   ],
   imports: [
     BrowserModule,
