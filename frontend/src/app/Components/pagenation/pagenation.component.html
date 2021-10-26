@@ -1,1 +1,10 @@
-<p>pagenation works!</p>
+<div class="container mt-3 mb-3">
+    <span class="mr-2" *ngFor="let i of pageArray; index as page">
+        <span *ngIf="(page + 1) != currentPage; else currentPageElement" class="pagenation_link" (click)="onClick(page + 1)">
+            {{ page + 1 }}
+        </span>
+        <ng-template #currentPageElement>
+            {{ page + 1 }}
+        </ng-template>
+    </span>
+</div>
