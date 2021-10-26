@@ -1,6 +1,7 @@
 package com.yanap.ecsite.controller;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +87,12 @@ public class UserController {
         }
         
         User user = authUser.getUser();
-        List<History> histories = user.getHistories();
+        List<History> tmp = user.getHistories();
+        List<History> histories = new ArrayList<History>();
+        for (int i = tmp.size() - 1; i >= 0; i--)
+        {
+            histories.add(tmp.get(i));
+        }
         int maxPage = histories.size() / ApplicationConfig.HISTORY_COUNT_BY_PAGE;
         if ((histories.size() % ApplicationConfig.HISTORY_COUNT_BY_PAGE) > 0) {
             maxPage++;
