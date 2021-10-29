@@ -4,6 +4,8 @@
             <div>商品名：{{ item.product.name }}</div>
             <div>数量： {{ item.count }}</div>
             <div>金額： {{ item.product.price * item.count | currency: 'JPY' }}</div>
+            <div>発注者名： {{ item.userName }}</div>
+            <div>発送先住所： {{ item.userAddress }}</div>
         </div>
         <div class="col-6">
             <div>
