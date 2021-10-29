@@ -1,23 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a routerLink="/"><span class="navbar-brand">通販システム</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            <span *ngIf="!logInService.isLogIn(); else elseLogIn">
-                <nav-bar-not-log-in></nav-bar-not-log-in>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <span *ngIf="!logInService.isLogIn(); else elseLogIn">
+            <nav-bar-not-log-in></nav-bar-not-log-in>
+        </span>
+        <ng-template #elseLogIn>
+            <span *ngIf="logInService.isUser(); else elseIsUser">
+                <nav-bar-user></nav-bar-user>
             </span>
-            <ng-template #elseLogIn>
-                <span *ngIf="logInService.isUser(); else elseIsUser">
-                    <nav-bar-user></nav-bar-user>
-                </span>
-                <ng-template #elseIsUser>
-                    <nav-bar-admin></nav-bar-admin>
-                </ng-template>
+            <ng-template #elseIsUser>
+                <nav-bar-admin></nav-bar-admin>
             </ng-template>
-        </div>
+        </ng-template>
     </div>
 </nav>
