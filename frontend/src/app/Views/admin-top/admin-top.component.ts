@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'admin-top',
   templateUrl: './admin-top.component.html',
   styleUrls: ['./admin-top.component.css']
 })
-export class AdminTopComponent implements OnInit {
+export class AdminTopComponent {
 
-  constructor() { }
+  isProcessing: boolean
 
-  ngOnInit(): void {
+  constructor() {
+    this.isProcessing = false;
   }
 
 }
