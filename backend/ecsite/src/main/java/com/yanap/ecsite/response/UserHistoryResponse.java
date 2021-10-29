@@ -16,6 +16,8 @@ public class UserHistoryResponse {
         private long id;
         private Product product;
         private int count;
+        private String userName;
+        private String userAddress;
         private String dateTime;
         private int status;
     }
@@ -36,8 +38,8 @@ public class UserHistoryResponse {
     }
 
     // 追加
-    public void add(long id, Product product, int count, String dateTime, int status) {
-        Info info = new Info(id, product, count, dateTime, status);
+    public void add(long id, Product product, int count, String userName, String userAddress, String dateTime, int status) {
+        Info info = new Info(id, product, count, userName, userAddress, dateTime, status);
         list.add(info);
     }
 }

@@ -1,2 +1,2 @@
 CREATE DATABASE ecsite CHARACTER SET utf8;
-GRANT ALL ON ecsite.* TO develop@'%' IDENTIFIED BY 'develop';
+GRANT ALL ON ecsite.* TO development@'%' IDENTIFIED BY 'development';

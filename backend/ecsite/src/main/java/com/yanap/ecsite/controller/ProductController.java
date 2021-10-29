@@ -1,12 +1,14 @@
 package com.yanap.ecsite.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import com.yanap.ecsite.config.ApplicationConfig;
 import com.yanap.ecsite.entity.Product;
 import com.yanap.ecsite.request.AddProductRequest;
 import com.yanap.ecsite.response.AddProductResponse;
 import com.yanap.ecsite.response.ProductListResponse;
+import com.yanap.ecsite.response.SimpleResultResponse;
 import com.yanap.ecsite.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +58,25 @@ public class ProductController {
         if (!productService.save(product)) { return new AddProductResponse(false, "商品登録に失敗しました"); }
         
         return new AddProductResponse(true, "");
+    }
+
+    // サンプル用商品を登録
+    @PostMapping("/admin/product/add_samples")
+    public SimpleResultResponse addSampleProducts() {
+        // 既に十分な商品数がある場合は登録しない
+        if (productService.countByKeyword("") >= 100) { return new SimpleResultResponse(false); }
+        
+        // 「商品サンプル１」が一番上に表示されるように降順で登録する
+        Random rnd = new Random();
+        for (int num = 100; num > 0; num--) {
+            Product product = new Product();
+            String text = "商品サンプル" + num;
+            product.setName(text);
+            product.setDescription(text);
+            product.setImageUrl("");
+            product.setPrice((rnd.nextInt(100) + 1) * 10);
+            productService.save(product);
+        }
+        return new SimpleResultResponse(true);
     }
 }

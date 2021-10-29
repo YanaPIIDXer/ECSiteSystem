@@ -1,5 +1,6 @@
 package com.yanap.ecsite.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -29,7 +30,9 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost"));       // TODO:本番環境対応
+        List<String> allowedOrigins = new ArrayList<String>();
+        allowedOrigins.add("http://localhost");       // TODO:本番環境対応
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
