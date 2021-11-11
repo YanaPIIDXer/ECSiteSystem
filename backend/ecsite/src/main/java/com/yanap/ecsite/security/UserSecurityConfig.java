@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
@@ -29,6 +30,9 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MappingJackson2HttpMessageConverter messageConverter;
+
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,7 +53,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                     .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler())
             .and()
-                .csrf().disable().cors();
+                .csrf().disable().cors().configurationSource(corsConfigurationSource);
     }
     
     @Override
