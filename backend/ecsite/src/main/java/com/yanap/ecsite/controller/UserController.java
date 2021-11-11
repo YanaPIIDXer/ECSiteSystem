@@ -107,7 +107,7 @@ public class UserController {
         }
         histories = histories.subList(fromIndex, toIndex);
         for (History history : histories) {
-            response.add(history.getId(), history.getProduct(), history.getCount(), dateTimeFormatter.format(history.getDateTime()), history.getStatus());
+            response.add(history.getId(), history.getProduct(), history.getCount(), "", "", dateTimeFormatter.format(history.getDateTime()), history.getStatus());
         }
         return response;
     }
