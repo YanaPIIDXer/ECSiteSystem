@@ -60,11 +60,18 @@ public class ProductController {
         return new AddProductResponse(true, "");
     }
 
+    // サンプル用商品を追加できるか？
+    @RequestMapping("/admin/product/check_able_add_samples")
+    public SimpleResultResponse checkAbleAddSampleProducts()
+    {
+        return new SimpleResultResponse(isAbleAddSampleProducts());
+    }
+
     // サンプル用商品を登録
     @PostMapping("/admin/product/add_samples")
     public SimpleResultResponse addSampleProducts() {
         // 既に十分な商品数がある場合は登録しない
-        if (productService.countByKeyword("") >= 100) { return new SimpleResultResponse(false); }
+        if (isAbleAddSampleProducts()) { return new SimpleResultResponse(false); }
         
         // 「商品サンプル１」が一番上に表示されるように降順で登録する
         Random rnd = new Random();
@@ -78,5 +85,10 @@ public class ProductController {
             productService.save(product);
         }
         return new SimpleResultResponse(true);
+    }
+
+    private boolean isAbleAddSampleProducts()
+    {
+        return (productService.countByKeyword("") < 100);
     }
 }

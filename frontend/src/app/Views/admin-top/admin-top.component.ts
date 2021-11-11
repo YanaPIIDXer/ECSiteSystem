@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import conn from '../../Modules/apiconnection';
 
 @Component({
@@ -6,12 +6,19 @@ import conn from '../../Modules/apiconnection';
   templateUrl: './admin-top.component.html',
   styleUrls: ['./admin-top.component.css']
 })
-export class AdminTopComponent {
+export class AdminTopComponent implements OnInit {
 
   isProcessing: boolean
+  isAbleAddSample: boolean
 
   constructor() {
     this.isProcessing = false;
+    this.isAbleAddSample = false;
+  }
+
+  async ngOnInit(): Promise<void> {
+    const res = await conn.get("/admin/product/check_able_add_samples");
+    this.isAbleAddSample = (res.status == 200 && res.json.result);
   }
 
   async addSampleProducts(): Promise<void> {

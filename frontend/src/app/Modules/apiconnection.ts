@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { environment } from  "../../environments/environment";
 
 const axiosInstance = axios.create(
     {
-        baseURL: "http://localhost:3001",
+        baseURL: environment.apiBaseURL,
         withCredentials: true
     }
 );

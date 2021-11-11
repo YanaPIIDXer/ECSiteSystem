@@ -7,9 +7,9 @@ services:
         volumes:
             - ./backend/ecsite:/app
         environment:
-            # 暫定処理
             STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
             DEVELOP: develop
+            DB_PASSWORD: "development"
         depends_on:
             - db
 
