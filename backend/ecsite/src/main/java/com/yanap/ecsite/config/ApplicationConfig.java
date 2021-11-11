@@ -22,7 +22,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost")     // TODO:本番環境対応
+                .allowedOrigins("http://localhost")
+                .allowedOrigins("https://ecsite-system.web.app/")
                 .allowCredentials(true);
     }
     
@@ -31,7 +32,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
     public CorsConfigurationSource corsConfigurationSource() {
         var configuration = new CorsConfiguration();
         List<String> allowedOrigins = new ArrayList<String>();
-        allowedOrigins.add("http://localhost");       // TODO:本番環境対応
+        allowedOrigins.add("http://localhost");
+        allowedOrigins.add("https://ecsite-system.web.app/");
         configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
