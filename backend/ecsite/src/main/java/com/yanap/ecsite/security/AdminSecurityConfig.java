@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 // 管理者セキュリティ構成
 @Configuration
@@ -20,6 +21,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,7 +43,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
                     .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler())
             .and()
-                .csrf().disable().cors();
+                .csrf().disable().cors().configurationSource(corsConfigurationSource);
     }
 
     @Override

@@ -38,4 +38,10 @@ public class ProductService {
     public int countByKeyword(String keyword) {
         return repository.countByKeyword(keyword);
     }
+    
+    // サンプルを追加できるか？
+    public boolean isAbleAddSampleProducts()
+    {
+        return (countByKeyword("") < 100);
+    }
 }

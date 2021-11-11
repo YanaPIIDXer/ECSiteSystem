@@ -22,8 +22,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost")
-                .allowedOrigins("https://ecsite-system.web.app/")
+                .allowedOrigins("http://localhost", "https://ecsite-system.web.app/")
                 .allowCredentials(true);
     }
     
