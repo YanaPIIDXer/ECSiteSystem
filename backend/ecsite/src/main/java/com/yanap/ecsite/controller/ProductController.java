@@ -71,7 +71,7 @@ public class ProductController {
     @PostMapping("/admin/product/add_samples")
     public SimpleResultResponse addSampleProducts() {
         // 既に十分な商品数がある場合は登録しない
-        if (productService.isAbleAddSampleProducts()) { return new SimpleResultResponse(false); }
+        if (!productService.isAbleAddSampleProducts()) { return new SimpleResultResponse(false); }
         
         // 「商品サンプル１」が一番上に表示されるように降順で登録する
         Random rnd = new Random();
