@@ -1,4 +1,6 @@
 <a routerLink="/admin/add_product">商品追加</a><br />
 <a routerLink="/admin/orders">注文リスト</a><br />
-<button (click)="addSampleProducts()">サンプル商品追加</button>
+<span *ngIf="isAbleAddSample">
+    <button (click)="addSampleProducts()">サンプル商品追加</button>
+</span>
 <div class="processing" *ngIf="isProcessing"></div>
