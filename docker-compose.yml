@@ -9,6 +9,7 @@ services:
         environment:
             STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
             DEVELOP: develop
+            DB_HOST: db
             DB_PASSWORD: "development"
             P12_PASSWORD: "password"
         depends_on:
